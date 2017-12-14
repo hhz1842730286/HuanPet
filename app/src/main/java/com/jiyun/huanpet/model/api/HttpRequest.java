@@ -11,5 +11,5 @@ public interface HttpRequest {
     <T>void get(String url, Map<String,String> headers,HttpCallback<T> callback);
     <T>void get(String url, HttpCallback<T> callback);
     <T>void post(String url, Map<String,String> headers,Map<String,String> params,HttpCallback<T> callback);
-    <T>void post(String url, Map<String,String> params,HttpCallback<T> callback);
+    <T>void post(String url, Map<String,Object> params,HttpCallback<T> callback);
 }

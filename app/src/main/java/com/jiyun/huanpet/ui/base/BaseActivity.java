@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.jiyun.huanpet.R;
+import com.jiyun.huanpet.httputils.AppUtils;
 import com.jiyun.huanpet.presenter.baseapi.BasePresenter;
 
 import java.lang.reflect.ParameterizedType;
@@ -24,6 +25,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
+        AppUtils.appContext = this;
 //        ImmersionBar.with(this).fitsSystemWindows(true).statusBarColor(R.color.primary).init();
         mPresenter = getPresenter();
         findViewById();

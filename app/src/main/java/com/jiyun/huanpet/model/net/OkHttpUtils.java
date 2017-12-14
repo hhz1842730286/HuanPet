@@ -1,9 +1,13 @@
 package com.jiyun.huanpet.model.net;
 
+import android.content.Context;
 import android.os.Environment;
 import android.os.Handler;
+import android.util.Log;
 
 import com.google.gson.Gson;
+import com.jiyun.huanpet.httputils.AppUtils;
+import com.jiyun.huanpet.httputils.CJSON;
 import com.jiyun.huanpet.model.api.HttpCallback;
 import com.jiyun.huanpet.model.api.HttpRequest;
 
@@ -183,13 +187,13 @@ public class OkHttpUtils implements HttpRequest{
     }
 
     @Override
-    public <T> void post(String url, Map<String, String> params, final HttpCallback<T> callback) {
+    public <T> void post(String url, Map<String, Object> params, final HttpCallback<T> callback) {
         Request.Builder builder = new Request.Builder();
         FormBody.Builder bodyBuilder = new FormBody.Builder();
         if (params==null||params.size()==0){
             throw new NullPointerException("请求参数不能为空");
         }
-        addBody(bodyBuilder,params);
+         bodyBuilder.add("data", CJSON.toJSONMap(params));
         Request request = builder.url(url).post(bodyBuilder.build()).build();
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
@@ -205,10 +209,11 @@ public class OkHttpUtils implements HttpRequest{
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String result = response.body().string();
+                Log.e("++++++++++++++++++++",result);
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        callback.success(getGeneric(result,callback));
+                        callback.success((T) result);
                     }
                 });
             }
@@ -238,14 +243,13 @@ public class OkHttpUtils implements HttpRequest{
         }
     }
     public <T>T getGeneric(String result,HttpCallback<T> callback){
+
         Gson gson = new Gson();
-        Type[] types = callback.getClass().getGenericInterfaces();
-        Type[] arguments = ((ParameterizedType) types[0]).getActualTypeArguments();
-        Type type = arguments[0];
-        if (String.class.getName().equals(type)){
-            return (T) result;
-        }
-        T t = gson.fromJson(result, type);
+        //通过反射获取泛型的实例
+        Type[] types = callback.getClass().getGenericInterfaces();//得到这个类所实现的所有接口的集合
+        Type[] actualTypeArguments = ((ParameterizedType) types[0]).getActualTypeArguments();//获取该接口中所有的参数
+        Type type = actualTypeArguments[0];//取第一个参数，就是对应JavaBean
+        T t = gson.fromJson(result,type);//通过gson转到对应的JavaBean
         return t;
     }
     private void addBody(FormBody.Builder builder, Map<String,String> params){
