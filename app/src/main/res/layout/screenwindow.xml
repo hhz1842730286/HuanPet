@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:text="所在地" />
+
+        <TextView
+            android:id="@+id/Choosecity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableRight="@mipmap/enter"
+            android:padding="10dp"
+            android:text="选择其他城市"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/login_btn_shape">
+
+            <TextView
+                android:id="@+id/Location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:drawableLeft="@mipmap/location"
+                android:padding="8dp"
+                android:text="北京"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:background="#e7e0e0" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="其他服务" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal"
+        android:weightSum="3"
+
+        >
+
+        <CheckBox
+            android:id="@+id/shower"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/login_btn_shape"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="洗澡"
+            android:button="@null"
+            android:textSize="15sp"
+            android:checked="true"
+            />
+
+        <CheckBox
+            android:id="@+id/Shuttle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/login_item_shap"
+            android:gravity="center"
+            android:padding="8dp"
+            android:button="@null"
+            android:text="接/送"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:background="#e7e0e0" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="节假日筛选" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_marginRight="5dp"
+
+        >
+
+        <CheckBox
+            android:id="@+id/NewDan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/login_item_shap"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="元旦可接单"
+            android:button="@null"
+            android:textSize="15sp" />
+
+        <CheckBox
+            android:id="@+id/SpringFestival"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/login_item_shap"
+            android:gravity="center"
+            android:padding="8dp"
+            android:button="@null"
+            android:text="春节可接单"
+            android:textSize="15sp" />
+
+        <CheckBox
+             android:id="@+id/QingmingFestival"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/login_item_shap"
+            android:gravity="center"
+            android:padding="8dp"
+            android:button="@null"
+            android:text="清明节可接单"
+            android:textSize="15sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_marginRight="5dp"
+
+        >
+
+        <CheckBox
+            android:id="@+id/LaborDay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/login_item_shap"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="劳动节可接单"
+            android:button="@null"
+            android:textSize="15sp" />
+
+        <CheckBox
+            android:id="@+id/DragonBoatFestival"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/login_item_shap"
+            android:gravity="center"
+            android:padding="8dp"
+            android:button="@null"
+            android:text="端午节可接单"
+            android:textSize="15sp" />
+
+        <CheckBox
+            android:id="@+id/AutumnFestival"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/login_item_shap"
+            android:gravity="center"
+            android:padding="8dp"
+            android:button="@null"
+            android:text="中秋节可接单"
+            android:textSize="15sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_marginRight="5dp"
+
+        >
+
+        <CheckBox
+            android:id="@+id/NationalDay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/login_item_shap"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="国庆节可接单"
+            android:button="@null"
+            android:textSize="15sp" />
+/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:background="#e7e0e0" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/Reset"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_weight="1"
+            android:background="@drawable/btn_shape_radius"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="重置"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/Determine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/login_btn_shape"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="确定" />
+    </RelativeLayout>
+</LinearLayout>

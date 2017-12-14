@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jiyun.huanpet">
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/pet_icon"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/pet_icon"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ui.activity.start.activity.StartActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.activity.home.activity.HomeActivity" />
+        <activity
+            android:name=".ui.activity.login.LoginActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".ui.activity.login.RegisterActivity" />
+        <activity android:name=".ui.activity.login.BindPhoneActivity" />
+        <activity android:name=".ui.activity.home.activity.NewsActivity" />
+        <activity android:name=".ui.activity.home.activity.PetActivity" />
+        <activity android:name=".ui.activity.home.activity.OrderActivity" />
+        <activity android:name=".ui.activity.home.activity.WalletActivity" />
+        <activity android:name=".ui.activity.home.activity.KonwActivity" />
+        <activity android:name=".ui.activity.home.activity.SettingActivity" />
+        <activity android:name=".ui.activity.home.activity.UpdateUserNameActivity" />
+        <activity android:name=".ui.activity.home.activity.PersonalInfomationActivity" />
+        <activity android:name=".ui.activity.home.activity.UpdateAddressActivity" />
+        <activity android:name=".ui.activity.home.activity.AddPetActivity" />
+        <activity android:name=".ui.activity.home.activity.PetMianYiActivity" />
+        <activity android:name=".ui.activity.home.activity.PetTypeActivity"></activity>
+        <activity android:name=".ui.activity.home.activity.FosterteacherActivity"></activity>
+        <activity android:name=".ui.activity.home.activity.AppointmentActivity"></activity>
+        <activity android:name=".ui.activity.home.activity.SuccessActivity"></activity>
+        <activity android:name=".ui.activity.home.activity.ChatInterfaceActivity"></activity>
+        <activity android:name=".ui.activity.home.activity.OrderdetailsActivity"></activity>
+        <activity android:name=".ui.activity.home.activity.EvaluatesuccessActivity"></activity>
+        <activity android:name=".ui.activity.home.activity.CommentActivity"></activity>
+        <activity android:name=".ui.activity.home.activity.ProposalActivity"></activity>
+
+        <activity
+            android:name="com.zaaach.citypicker.CityPickerActivity"
+            android:theme="@style/CityPicker.NoActionBar"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
+
+        <meta-data android:name="com.amap.api.v2.apikey"
+            android:value="your key"/>
+    </application>
+
+</manifest>
