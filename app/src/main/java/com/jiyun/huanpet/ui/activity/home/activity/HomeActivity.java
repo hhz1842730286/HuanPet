@@ -2,6 +2,7 @@ package com.jiyun.huanpet.ui.activity.home.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.jiyun.huanpet.constants.Constants.REQUESTCODE;
+import static com.jiyun.huanpet.constants.Constants.RESULTCODE;
 
 /**
  * Created by mengYao on 2017/12/8.
@@ -80,6 +82,8 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
     private TextView Reset;
     private TextView Determine;
     private Boolean che = false;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
 
 
     @Override
@@ -110,6 +114,23 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
         screen = (RelativeLayout) findViewById(R.id.screen);
 
         home_line = (LinearLayout) findViewById(R.id.home_line);
+
+
+        preferences = mCon.getSharedPreferences("Login",MODE_PRIVATE);
+        editor = preferences.edit();
+        String userPhone = preferences.getString("userPhone", null);
+        String userName = preferences.getString("userName", null);
+        if(userPhone!=null&userName!=null){
+            mNoLoginContainer.setVisibility(View.GONE);
+            mInfomation.setVisibility(View.VISIBLE);
+            mMenuHead.setImageResource(R.mipmap.ic_launcher_round);
+            mMenuName.setText(userName);
+            mMenuPhone.setText(userPhone);
+        }else{
+            mNoLoginContainer.setVisibility(View.VISIBLE);
+            mInfomation.setVisibility(View.GONE);
+        }
+
         View nearbyview = LayoutInflater.from(mCon).inflate(R.layout.nearbywindow, null);
         nearbyWindow = new PopupWindow(nearbyview, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         nearbyWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
@@ -406,12 +427,19 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
     //重写onActivityResult方法
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_CODE_PICK_CITY && resultCode == RESULT_OK){
+        if (requestCode == REQUESTCODE && resultCode == RESULTCODE){
             if (data != null){
-                String city = data.getStringExtra(CityPickerActivity.KEY_PICKED_CITY);
-                Location.setText(city);
+                String userPhone = data.getStringExtra("userPhone");
+                String userName = data.getStringExtra("userName");
+                String userId = data.getStringExtra("userId");
+                String userSex = data.getStringExtra("userSex");
+                mMenuName.setText(userName);
+                mMenuPhone.setText(userPhone);
+                mMenuHead.setImageResource(R.mipmap.ic_launcher_round);
+
             }
         }
     }
 
 }
+

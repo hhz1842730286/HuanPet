@@ -3,7 +3,6 @@ package com.jiyun.huanpet.model.biz.register;
 import com.jiyun.huanpet.config.Urls;
 import com.jiyun.huanpet.factor.MyFactor;
 import com.jiyun.huanpet.model.api.HttpCallback;
-import com.jiyun.huanpet.model.biz.RegisterIHome;
 
 import java.util.HashMap;
 import java.util.Map;

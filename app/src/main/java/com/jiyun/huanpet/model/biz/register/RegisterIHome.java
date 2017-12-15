@@ -1,4 +1,4 @@
-package com.jiyun.huanpet.model.biz;
+package com.jiyun.huanpet.model.biz.register;
 
 import com.jiyun.huanpet.model.api.HttpCallback;
 

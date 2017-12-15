@@ -2,7 +2,7 @@ package com.jiyun.huanpet.presenter.presenter;
 
 import com.google.gson.Gson;
 import com.jiyun.huanpet.model.api.HttpCallback;
-import com.jiyun.huanpet.model.biz.RegisterIHome;
+import com.jiyun.huanpet.model.biz.register.RegisterIHome;
 import com.jiyun.huanpet.model.biz.register.RegisterHome;
 import com.jiyun.huanpet.presenter.contract.RegisterContract;
 import com.jiyun.huanpet.ui.activity.home.bean.RegisterBean;
