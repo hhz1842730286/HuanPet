@@ -3,6 +3,7 @@ package com.jiyun.huanpet.ui.activity.login;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -116,8 +117,11 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements L
     @Override
     public void login(RegisterBean registerBean) {
         if (registerBean.isRet() == true) {
+
+            editor.clear();
             Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
             String userName = registerBean.getResult().getUserName();
+            Log.e("registerBean",userName);
             String userId = registerBean.getResult().getUserId();
             int userSex = registerBean.getResult().getUserSex();
             long userPhone = registerBean.getResult().getUserPhone();
@@ -126,12 +130,12 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements L
             editor.putString("userId",userId);
             editor.putInt("userSex",userSex);
             editor.commit();
-            Intent in = new Intent();
-            in.putExtra("userPhone",userPhone);
-            in.putExtra("userName",userName);
-            in.putExtra("userId",userId);
-            in.putExtra("userSex",userSex);
-            setResult(Constants.RESULTCODE,in);
+//            Intent in = new Intent();
+//            in.putExtra("userPhone",userPhone);
+//            in.putExtra("userName",userName);
+//            in.putExtra("userId",userId);
+//            in.putExtra("userSex",userSex);
+//            setResult(Constants.RESULTCODE,in);
             finish();
         } else {
             Toast.makeText(this, "登录失败", Toast.LENGTH_SHORT).show();

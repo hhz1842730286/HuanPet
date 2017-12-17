@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jiyun.huanpet.R;
+import com.jiyun.huanpet.constants.Constants;
 import com.jiyun.huanpet.presenter.contract.HomeContract;
 import com.jiyun.huanpet.presenter.presenter.HomePresenterImpl;
 import com.jiyun.huanpet.ui.activity.home.adapter.NearbyAdapter;
@@ -118,16 +120,16 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
 
         preferences = mCon.getSharedPreferences("Login",MODE_PRIVATE);
         editor = preferences.edit();
-        String userPhone = preferences.getString("userPhone", null);
-        String userName = preferences.getString("userName", null);
-        if(userPhone!=null&userName!=null){
-            mNoLoginContainer.setVisibility(View.GONE);
-            mInfomation.setVisibility(View.VISIBLE);
+        long userPhone = preferences.getLong("userPhone", 0);
+        String userName = preferences.getString("userName", "");
+        if(userPhone!=0&userName!=null){
+           mNoLoginContainer.setVisibility(View.GONE);
+//            mInfomation.setVisibility(View.VISIBLE);
             mMenuHead.setImageResource(R.mipmap.ic_launcher_round);
             mMenuName.setText(userName);
-            mMenuPhone.setText(userPhone);
+            mMenuPhone.setText(userPhone+"");
         }else{
-            mNoLoginContainer.setVisibility(View.VISIBLE);
+//            mNoLoginContainer.setVisibility(View.VISIBLE);
             mInfomation.setVisibility(View.GONE);
         }
 
@@ -344,7 +346,8 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
                 startActivity(new Intent(this, FosterteacherActivity.class));
                 break;
             case R.id.mNoLoginContainer:
-                startActivityForResult(new Intent(this, LoginActivity.class), REQUESTCODE);
+               Intent in = new Intent(this,LoginActivity.class);
+               startActivity(in);
                 break;
         }
     }
@@ -424,22 +427,22 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
                 break;
         }
     }
-    //重写onActivityResult方法
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUESTCODE && resultCode == RESULTCODE){
-            if (data != null){
-                String userPhone = data.getStringExtra("userPhone");
-                String userName = data.getStringExtra("userName");
-                String userId = data.getStringExtra("userId");
-                String userSex = data.getStringExtra("userSex");
-                mMenuName.setText(userName);
-                mMenuPhone.setText(userPhone);
-                mMenuHead.setImageResource(R.mipmap.ic_launcher_round);
 
-            }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        long userPhone = preferences.getLong("userPhone", 0);
+        String userName = preferences.getString("userName", "");
+        if(userPhone!=0&userName!=null){
+            mNoLoginContainer.setVisibility(View.GONE);
+            mInfomation.setVisibility(View.VISIBLE);
+            mMenuHead.setImageResource(R.mipmap.ic_launcher_round);
+            mMenuName.setText(userName);
+            mMenuPhone.setText(userPhone+"");
+        }else{
+            mNoLoginContainer.setVisibility(View.VISIBLE);
+            mInfomation.setVisibility(View.GONE);
         }
     }
-
 }
 

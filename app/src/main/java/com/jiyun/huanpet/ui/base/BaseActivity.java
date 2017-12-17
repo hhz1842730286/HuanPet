@@ -105,4 +105,5 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         super.onDestroy();
 //        ImmersionBar.with(this).destroy();
     }
+
 }
