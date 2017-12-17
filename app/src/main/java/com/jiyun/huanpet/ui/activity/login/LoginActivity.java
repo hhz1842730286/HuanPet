@@ -130,12 +130,6 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements L
             editor.putString("userId",userId);
             editor.putInt("userSex",userSex);
             editor.commit();
-//            Intent in = new Intent();
-//            in.putExtra("userPhone",userPhone);
-//            in.putExtra("userName",userName);
-//            in.putExtra("userId",userId);
-//            in.putExtra("userSex",userSex);
-//            setResult(Constants.RESULTCODE,in);
             finish();
         } else {
             Toast.makeText(this, "登录失败", Toast.LENGTH_SHORT).show();
