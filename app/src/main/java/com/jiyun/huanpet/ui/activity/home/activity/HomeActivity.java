@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,11 +25,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.jiyun.huanpet.R;
 import com.jiyun.huanpet.constants.Constants;
 import com.jiyun.huanpet.presenter.contract.HomeContract;
 import com.jiyun.huanpet.presenter.presenter.HomePresenterImpl;
+import com.jiyun.huanpet.ui.activity.home.adapter.HomeAdapter;
 import com.jiyun.huanpet.ui.activity.home.adapter.NearbyAdapter;
+import com.jiyun.huanpet.ui.activity.home.bean.FuJinBean;
 import com.jiyun.huanpet.ui.activity.home.bean.Person;
 import com.jiyun.huanpet.ui.activity.login.LoginActivity;
 import com.jiyun.huanpet.ui.base.BaseActivity;
@@ -45,6 +50,7 @@ import static com.jiyun.huanpet.constants.Constants.RESULTCODE;
 
 public class HomeActivity extends BaseActivity<HomePresenterImpl> implements HomeContract.HomeView, View.OnClickListener,CompoundButton.OnCheckedChangeListener {
     private static final int REQUEST_CODE_PICK_CITY = 0;
+    private RecyclerView home_recyclerview;
     private DrawerLayout drawer_layout;
     private ImageView mMenuHead;
     private ImageView mPersonalCenter;
@@ -86,6 +92,9 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
     private Boolean che = false;
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
+    private HomePresenterImpl homePresenter;
+    private List<FuJinBean.DescBean> list;
+    private HomeAdapter adapter;
 
 
     @Override
@@ -117,6 +126,13 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
 
         home_line = (LinearLayout) findViewById(R.id.home_line);
 
+        homePresenter = new HomePresenterImpl(this);
+        home_recyclerview = (RecyclerView) findViewById(R.id.home_recyclerview);
+
+        list = new ArrayList<>();
+        adapter = new HomeAdapter(list,mCon);
+        home_recyclerview.setLayoutManager(new LinearLayoutManager(mCon));
+        home_recyclerview.setAdapter(adapter);
 
         preferences = mCon.getSharedPreferences("Login",MODE_PRIVATE);
         editor = preferences.edit();
@@ -268,7 +284,7 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
 
     @Override
     protected void loadData() {
-
+        homePresenter.fujinurl("0","40.116384","116.250374","10","distance asc");
     }
 
     @Override
@@ -443,6 +459,12 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
             mNoLoginContainer.setVisibility(View.VISIBLE);
             mInfomation.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void fujinview(List<FuJinBean.DescBean> fuJinBean) {
+        list.addAll(fuJinBean);
+        adapter.notifyDataSetChanged();
     }
 }
 

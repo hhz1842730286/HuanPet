@@ -9,4 +9,6 @@ import com.jiyun.huanpet.model.api.HttpCallback;
 public interface IHomeLogin<T> {
     //登录网址拼接
     <T>void login(String userName, String password, HttpCallback<T> callback);
+    //主页附近筛选
+    <T>void fujin(String beginIndex,String coordX,String coordY,String endIndex,String orderBy,HttpCallback<T> callback);
 }

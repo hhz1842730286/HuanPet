@@ -14,5 +14,6 @@ public interface LoginContract {
     }
     interface LoginPresenter extends BasePresenter<LoginView>{
         void url(String user,String pass);
+
     }
 }

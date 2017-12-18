@@ -19,4 +19,15 @@ public class HomeLogin implements IHomeLogin {
         map.put("password",password);
         MyFactor.httpUtils().post(Urls.LOGIN,map,callback);
     }
+
+    @Override
+    public void fujin(String beginIndex, String coordX, String coordY, String endIndex, String orderBy, HttpCallback callback) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("beginIndex",beginIndex);
+        map.put("coordX",coordX);
+        map.put("coordY",coordY);
+        map.put("endIndex",endIndex);
+        map.put("orderBy",orderBy);
+        MyFactor.httpUtils().post(Urls.FUJIN,map,callback);
+    }
 }

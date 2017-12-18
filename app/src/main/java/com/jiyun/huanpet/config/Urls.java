@@ -11,6 +11,8 @@ public class Urls {
     public static final String REGISTER = BASE_URL+"user/register.jhtml";
     //普通登录
     public static final String LOGIN = BASE_URL+"user/login.jhtml";
+    //主页附近筛选
+    public static final String FUJIN = BASE_URL+"users/getUsersInfoByVO.jhtml";
 //    // 数据请求URL
 //    public static final String REQUESTURL = BASE_URL + "/dog_family/";
 
