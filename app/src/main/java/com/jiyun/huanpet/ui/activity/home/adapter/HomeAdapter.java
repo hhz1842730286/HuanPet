@@ -31,7 +31,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mCon).inflate(R.layout.homerecyclerview_item,parent,false);
+        View view = LayoutInflater.from(mCon).inflate(R.layout.homerecyclerview_item, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -41,8 +41,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         String family = list.get(position).getFamily();
         String address = list.get(position).getAddress();
         String userImage = list.get(position).getUserImage();
+        double price = list.get(position).getPrice();
         holder.name.setText(family);
         holder.jianjie.setText(address);
+        holder.jiage.setText("¥"+price+"起");
         Glide.with(mCon).load(userImage).into(holder.circleImageView);
     }
 
@@ -51,14 +53,16 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         return list.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView name,jianjie;
+    class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView name, jianjie, jiage;
         private CircleImageView circleImageView;
+
         public ViewHolder(View itemView) {
             super(itemView);
-          name = itemView.findViewById(R.id.name_text);
-          jianjie = itemView.findViewById(R.id.jianjie_text);
+            name = itemView.findViewById(R.id.name_text);
+            jianjie = itemView.findViewById(R.id.jianjie_text);
             circleImageView = itemView.findViewById(R.id.home_item_image);
+            jiage = itemView.findViewById(R.id.jiage_text);
 
         }
     }

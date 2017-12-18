@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:padding="10dp"
     >
      <RelativeLayout
          android:layout_width="match_parent"
@@ -13,30 +14,40 @@
              android:layout_height="80dp"
              android:id="@+id/home_item_image"
              android:src="@mipmap/ic_launcher_round"
-             android:padding="10dp"
              />
 
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="name"
-                   android:textSize="15sp"
+                   android:textSize="18sp"
                    android:layout_alignParentTop="true"
                    android:paddingLeft="10dp"
                    android:layout_toRightOf="@+id/home_item_image"
                     android:id="@+id/name_text"
+                   android:textColor="#0a0909"
                    />
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="简介"
-                   android:textSize="10sp"
+                   android:textSize="13sp"
                    android:layout_toRightOf="@+id/home_item_image"
                     android:layout_alignParentBottom="true"
                     android:paddingLeft="10dp"
                    android:layout_marginBottom="8dp"
                    android:id="@+id/jianjie_text"
                    />
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="价格"
+             android:textColor="#ff9a02"
+             android:textSize="20sp"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:id="@+id/jiage_text"
+             />
      </RelativeLayout>
 
 </LinearLayout>

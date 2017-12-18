@@ -6,6 +6,7 @@ import com.jiyun.huanpet.model.biz.login.HomeLogin;
 import com.jiyun.huanpet.model.biz.login.IHomeLogin;
 import com.jiyun.huanpet.presenter.contract.HomeContract;
 import com.jiyun.huanpet.ui.activity.home.bean.FuJinBean;
+import com.jiyun.huanpet.ui.activity.home.bean.PetTypeBean;
 
 import java.util.List;
 
@@ -48,5 +49,24 @@ public class HomePresenterImpl implements HomeContract.HomePresenter {
 
             }
         });
+    }
+
+    @Override
+    public void petType(String beginIndex, String endIndex, String petTypeCode) {
+      iHomeLogin.petType(beginIndex, endIndex, petTypeCode, new HttpCallback() {
+          @Override
+          public void success(Object o) {
+              String string = o.toString();
+              Gson gson = new Gson();
+              PetTypeBean petTypeBean = gson.fromJson(string, PetTypeBean.class);
+              homeView.petType(petTypeBean.getDesc());
+
+          }
+
+          @Override
+          public void error(String error) {
+
+          }
+      });
     }
 }

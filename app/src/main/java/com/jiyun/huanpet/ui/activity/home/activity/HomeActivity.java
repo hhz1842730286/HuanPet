@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -34,6 +35,7 @@ import com.jiyun.huanpet.ui.activity.home.adapter.HomeAdapter;
 import com.jiyun.huanpet.ui.activity.home.adapter.NearbyAdapter;
 import com.jiyun.huanpet.ui.activity.home.bean.FuJinBean;
 import com.jiyun.huanpet.ui.activity.home.bean.Person;
+import com.jiyun.huanpet.ui.activity.home.bean.PetTypeBean;
 import com.jiyun.huanpet.ui.activity.login.LoginActivity;
 import com.jiyun.huanpet.ui.base.BaseActivity;
 import com.zaaach.citypicker.CityPickerActivity;
@@ -54,6 +56,7 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
     private DrawerLayout drawer_layout;
     private ImageView mMenuHead;
     private ImageView mPersonalCenter;
+    private TextView nearbytext;
     private RelativeLayout mMessageContainer;
     private RelativeLayout mPetContainer;
     private RelativeLayout mOrderContainer;
@@ -93,8 +96,9 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
     private HomePresenterImpl homePresenter;
-    private List<FuJinBean.DescBean> list;
+    private List<FuJinBean.DescBean> beans;
     private HomeAdapter adapter;
+    private List<PetTypeBean.DescBean> petList;
 
 
     @Override
@@ -119,18 +123,21 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
         mSettingContainer = (RelativeLayout) findViewById(R.id.mSettingContainer);
         mBtnSwitchUser = (Button) findViewById(R.id.mBtnSwitchUser);
         mNoLoginContainer = (RelativeLayout) findViewById(R.id.mNoLoginContainer);
-
+        nearbytext = (TextView) findViewById(R.id.nearbytext);
         nearby = (RelativeLayout) findViewById(R.id.nearby);
         pettype = (RelativeLayout) findViewById(R.id.pettype);
         screen = (RelativeLayout) findViewById(R.id.screen);
 
         home_line = (LinearLayout) findViewById(R.id.home_line);
 
+        petList = new ArrayList<>();
+
         homePresenter = new HomePresenterImpl(this);
         home_recyclerview = (RecyclerView) findViewById(R.id.home_recyclerview);
 
-        list = new ArrayList<>();
-        adapter = new HomeAdapter(list,mCon);
+        beans = new ArrayList<>();
+        adapter = new HomeAdapter(beans,mCon);
+        home_recyclerview.addItemDecoration(new DividerItemDecoration(mCon,DividerItemDecoration.VERTICAL));
         home_recyclerview.setLayoutManager(new LinearLayoutManager(mCon));
         home_recyclerview.setAdapter(adapter);
 
@@ -167,7 +174,20 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                beans.clear();
+                String title = list.get(position).getTitle();
+                nearbytext.setText(title);
+                if(title.equals("附近优先")){
+                    homePresenter.fujinurl("0","40.116384","116.250374","10","distance asc");
+                }else if (title.equals("好评优先")){
+                    homePresenter.fujinurl("0","40.116384","116.250374","10","score desc");
+                }else if(title.equals("订单优先")){
+                    homePresenter.fujinurl("0","40.116384","116.250374","10","orderCount desc");
+                }else if (title.equals("价格从高到低")){
+                    homePresenter.fujinurl("0","40.116384","116.250374","10","price asc");
+                }else if(title.equals("价格从低到高")){
+                    homePresenter.fujinurl("0","40.116384","116.250374","10","price desc");
+                }
                 for (Person person : list) { //遍历list集合中的数据
                     person.setChecked(false);//全部设为未选中
                 }
@@ -204,10 +224,24 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
         final NearbyAdapter petadapter = new NearbyAdapter(mCon, pet);
         petlistview.setAdapter(petadapter);
         petlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            int currentNum = -1;
 
+            int currentNum = -1;
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String title = pet.get(position).getTitle();
+                if(title.equals("小型犬")){
+
+                }else if(title.equals("中型犬")){
+
+                }else if(title.equals("大型犬")){
+                    homePresenter.petType("0","10","23c8d60ef10644ee96314c11c4d3f86b");
+                }else if(title.equals("猫")){
+
+                }else if(title.equals("小宠")){
+
+                }else if(title.equals("幼犬")){
+
+                }
 
                 for (Person person : pet) { //遍历list集合中的数据
                     person.setChecked(false);//全部设为未选中
@@ -285,6 +319,7 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
     @Override
     protected void loadData() {
         homePresenter.fujinurl("0","40.116384","116.250374","10","distance asc");
+
     }
 
     @Override
@@ -324,14 +359,17 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
                 NationalDay.setChecked(false);
                 break;
             case R.id.nearby:
+
                 nearbyWindow.showAsDropDown(home_line);
                 break;
 
             case R.id.pettype:
+                homePresenter.petType("0","10","");
                 pettypeWindow.showAsDropDown(home_line);
                 break;
 
             case R.id.screen:
+
                 screenWindow.showAsDropDown(home_line);
                 break;
             case R.id.mInfomation:
@@ -463,8 +501,13 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
 
     @Override
     public void fujinview(List<FuJinBean.DescBean> fuJinBean) {
-        list.addAll(fuJinBean);
+        beans.addAll(fuJinBean);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void petType(List<PetTypeBean.DescBean> descBeans) {
+        petList.addAll(descBeans);
     }
 }
 

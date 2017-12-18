@@ -30,4 +30,13 @@ public class HomeLogin implements IHomeLogin {
         map.put("orderBy",orderBy);
         MyFactor.httpUtils().post(Urls.FUJIN,map,callback);
     }
+
+    @Override
+    public void petType(String beginIndex, String endIndex, String petTypeCode, HttpCallback callback) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("beginIndex",beginIndex);
+        map.put("endIndex",endIndex);
+        map.put("petTypeCode",petTypeCode);
+        MyFactor.httpUtils().post(Urls.PETCODE,map,callback);
+    }
 }
