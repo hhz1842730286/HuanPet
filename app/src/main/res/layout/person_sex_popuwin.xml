@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="性别"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textSize="12sp"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#cec9c9"
+        ></View>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="男"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:textColor="#03cdff"
+        android:id="@+id/man"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#cec9c9"
+        ></View>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="女"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColor="#03cdff"
+        android:id="@+id/women"
+        />
+</LinearLayout>

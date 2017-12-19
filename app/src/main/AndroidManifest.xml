@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jiyun.huanpet">
-
-    <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/pet_icon"
@@ -35,26 +35,25 @@
         <activity android:name=".ui.activity.home.activity.UpdateAddressActivity" />
         <activity android:name=".ui.activity.home.activity.AddPetActivity" />
         <activity android:name=".ui.activity.home.activity.PetMianYiActivity" />
-        <activity android:name=".ui.activity.home.activity.PetTypeActivity" />
-        <activity android:name=".ui.activity.home.activity.FosterteacherActivity" />
-        <activity android:name=".ui.activity.home.activity.AppointmentActivity" />
-        <activity android:name=".ui.activity.home.activity.SuccessActivity" />
-        <activity android:name=".ui.activity.home.activity.ChatInterfaceActivity" />
-        <activity android:name=".ui.activity.home.activity.OrderdetailsActivity" />
-        <activity android:name=".ui.activity.home.activity.EvaluatesuccessActivity" />
-        <activity android:name=".ui.activity.home.activity.CommentActivity" />
-        <activity android:name=".ui.activity.home.activity.ProposalActivity" />
+        <activity android:name=".ui.activity.home.activity.PetTypeActivity"></activity>
+        <activity android:name=".ui.activity.home.activity.FosterteacherActivity"></activity>
+        <activity android:name=".ui.activity.home.activity.AppointmentActivity"></activity>
+        <activity android:name=".ui.activity.home.activity.SuccessActivity"></activity>
+        <activity android:name=".ui.activity.home.activity.ChatInterfaceActivity"></activity>
+        <activity android:name=".ui.activity.home.activity.OrderdetailsActivity"></activity>
+        <activity android:name=".ui.activity.home.activity.EvaluatesuccessActivity"></activity>
+        <activity android:name=".ui.activity.home.activity.CommentActivity"></activity>
+        <activity android:name=".ui.activity.home.activity.ProposalActivity"></activity>
+         <activity android:name=".ui.activity.home.activity.UpdateWeiXinActivity"></activity>
+        <activity android:name=".ui.activity.home.activity.UpdateQQActivity"></activity>
         <activity
             android:name="com.zaaach.citypicker.CityPickerActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/CityPicker.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
 
-        <meta-data
-            android:name="com.amap.api.v2.apikey"
-            android:value="your key" />
-
-        <activity android:name=".ui.activity.home.activity.DetailsOfAFosterTeacherActivity"></activity>
+        <meta-data android:name="com.amap.api.v2.apikey"
+            android:value="your key"/>
     </application>
 
 </manifest>

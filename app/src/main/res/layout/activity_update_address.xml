@@ -1,9 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.jiyun.huanpet.ui.activity.home.activity.UpdateAddressActivity">
-
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/back_gray"
+            android:padding="10dp"
+            android:id="@+id/person_name_back"
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="联系地址"
+            android:textSize="18sp"
+            android:layout_centerInParent="true"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="提交"
+            android:id="@+id/Submit"
+            android:layout_alignParentRight="true"
+            android:padding="10dp"
+            android:layout_centerVertical="true"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/City"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="城市"
+            android:padding="10dp"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/enter"
+            android:layout_alignParentRight="true"
+            android:padding="10dp"
+            android:id="@+id/enter_adress"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="城市"
+            android:padding="10dp"
+            android:layout_toLeftOf="@+id/enter_adress"
+            android:id="@+id/enter_textCity"
+            />
+    </RelativeLayout>
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:weightSum="4"
+          >
+          <TextView
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:text="具体地址"
+              android:padding="10dp"
+              />
+          <EditText
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="3"
+              android:padding="10dp"
+              android:background="#ffffff"
+              android:hint="请输入具体的街道-小区"
+              android:id="@+id/person_name_edi"
+              android:maxLength ="16"
+              />
+      </LinearLayout>
+</LinearLayout>
