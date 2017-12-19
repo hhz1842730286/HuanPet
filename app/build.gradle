@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     buildToolsVersion '26.0.2'
     greendao {
         schemaVersion 1
@@ -43,5 +43,5 @@ dependencies {
     compile 'com.alibaba:fastjson:1.2.41'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.github.codbking:PickTime:v1.0.1'
-    compile'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 }

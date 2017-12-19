@@ -27,7 +27,7 @@ public class FosterteacherActivity extends AppCompatActivity  implements View.On
         appointment = (Button) findViewById(R.id.appointment);
         appointment.setOnClickListener(this);
     }
-
+      //jsgngkjdsklgndslkgdgdslkgjdgfdsf
     @Override
     public void onClick(View v) {
         switch (v.getId()){
