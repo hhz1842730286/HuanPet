@@ -83,9 +83,9 @@ public class PersonalInfomationActivity extends BaseActivity<PersonalInfomationP
 
     @Override
     protected void findViewById() {
+        mCon = PersonalInfomationActivity.this;
         preferences = mCon.getSharedPreferences("Login",MODE_PRIVATE);
         edit = preferences.edit();
-        mCon = PersonalInfomationActivity.this;
         person_titleimage = (ImageView) findViewById(R.id.person_titleimage);
         person_lineartitle = (LinearLayout) findViewById(R.id.person_lineartitle);
         personal_return = (ImageView) findViewById(R.id.personal_return);
