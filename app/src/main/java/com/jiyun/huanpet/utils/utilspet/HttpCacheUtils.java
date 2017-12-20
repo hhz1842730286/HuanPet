@@ -8,19 +8,14 @@ package com.jiyun.huanpet.utils.utilspet;
  String imageUri = "drawable://" + R.drawable.image; //  drawable文件   
  */
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.widget.ImageView;
+import android.content.Context;
+import android.os.Environment;
 
-import com.bumptech.glide.Glide;
-import com.jiyun.huanpet.R;
-import com.jiyun.huanpet.config.Urls;
-import com.jiyun.huanpet.httputils.AppUtils;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import java.io.File;
+import java.math.BigDecimal;
 
 /**
- * 
+ *
  * @描述 : 网络访问缓存
  * @类名 : HttpCacheUtils
  * @作�?? : Android - yhq
@@ -28,164 +23,97 @@ import com.nostra13.universalimageloader.core.ImageLoader;
  * @日期 : 2016�???4�???7�???
  */
 public class HttpCacheUtils {
-	public static DisplayImageOptions getImageOptions(int resId) {
-		BitmapFactory.Options decodeOptions = new BitmapFactory.Options();
-		decodeOptions.inSampleSize = 2;
-		DisplayImageOptions options = new DisplayImageOptions.Builder()
-				.showImageOnLoading(resId)
-				// 设置图片在下载期间显示的图片
-				.showImageForEmptyUri(resId)
-				// 设置图片Uri为空或是错误的时候显示的图片
-				.showImageOnFail(resId)
-				// 设置图片加载/解码过程中错误时候显示的图片
-				.cacheOnDisc(true).decodingOptions(decodeOptions)
-				.bitmapConfig(Bitmap.Config.RGB_565)// 设置下载的图片是否缓存在SD卡中
-				.build();// 构建完成
-		return options;
-	}
-
-	/**
-	 *
-	 * @描述 : 设置缓存图片
-	 * @方法名称 : loadImage---->HttpCacheUtils.java
-	 * @作�?? : Android - yhq
-	 * @创建日期 : 2016�???4�???7�??? 上午11:36:16
-	 * @param url
-	 * @param view
-	 */
-	public static void loadImage(String url, ImageView view) {
-		try {
-			if (url.indexOf("http://") != -1 || url.indexOf("https://") != -1) {
-				ImageLoader.getInstance().displayImage(url, view,
-						getImageOptions(R.mipmap.ic_launcher));
-			} else {
-				ImageLoader.getInstance().displayImage(
-						Urls.HTTP_IMAGE_URL + url, view,
-						getImageOptions(R.mipmap.ic_launcher));
-			}
-		} catch (Exception e) {
-			Glide.with(AppUtils.getAppContext())
-					.load(R.mipmap.ic_launcher).into(view);
-		}
-	}
-
-	/**
-	 *
-	 * @描述 : 加载全路径图�???
-	 * @方法名称 : loadImage---->HttpCacheUtils.java
-	 * @作�?? : Android - yhq
-	 * @创建日期 : 2016�???4�???7�??? 上午11:36:16
-	 * @param url
-	 * @param view
-	 */
-	public static void loadImageAllPathHttp(String url, ImageView view) {
-		try {
-			if (url.indexOf("http://") != -1 || url.indexOf("https://") != -1) {
-				ImageLoader.getInstance().displayImage(url, view,
-						getImageOptions(R.mipmap.ic_launcher));
-			} else {
-				ImageLoader.getInstance().displayImage(url, view,
-						getImageOptions(R.mipmap.ic_launcher));
-			}
-		} catch (Exception e) {
-			Glide.with(AppUtils.getAppContext())
-					.load(R.mipmap.ic_launcher).into(view);
-		}
-	}
-
-	/**
-	 *
-	 * @描述 : 设置缓存图片
-	 * @方法名称 : loadImage---->HttpCacheUtils.java
-	 * @作�?? : Android - yhq
-	 * @创建日期 : 2016�???4�???7�??? 上午11:36:16
-	 * @param url
-	 * @param view
-	 */
-	public static void loadImagePet(String url, ImageView view) {
-		try {
-			if (url.indexOf("http://") != -1 || url.indexOf("https://") != -1) {
-				ImageLoader.getInstance().displayImage(url, view,
-						getImageOptions(com.jiyun.huanpet.R.mipmap.ic_launcher));
-			} else {
-				ImageLoader.getInstance().displayImage(
-						Urls.HTTP_IMAGE_URL + url, view,
-						getImageOptions(R.mipmap.ic_launcher));
-			}
-		} catch (Exception e) {
-			Glide.with(AppUtils.getAppContext()).load(R.mipmap.ic_launcher)
-					.into(view);
-		}
-	}
-
-	/**
-	 *
-	 * @描述 : 设置缓存图片
-	 * @方法名称 : loadImage---->HttpCacheUtils.java
-	 * @作�?? : Android - yhq
-	 * @创建日期 : 2016�???4�???7�??? 上午11:36:16
-	 * @param url
-	 * @param view
-	 */
-	public static void loadFilePetImage(String url, ImageView view) {
-		try {
-			if (url.indexOf("http://") != -1 || url.indexOf("https://") != -1) {
-				ImageLoader.getInstance().displayImage(url, view,
-						getImageOptions(R.mipmap.ic_launcher));
-			} else {
-				ImageLoader.getInstance().displayImage("file://" + url, view,
-						getImageOptions(R.mipmap.ic_launcher));
-			}
-		} catch (Exception e) {
-			Glide.with(AppUtils.getAppContext()).load(R.mipmap.ic_launcher)
-					.into(view);
-		}
-	}
-
-	/**
-	 *
-	 * @描述 : 设置缓存图片
-	 * @方法名称 : loadImage---->HttpCacheUtils.java
-	 * @作�?? : Android - yhq
-	 * @创建日期 : 2016�???4�???7�??? 上午11:36:16
-	 * @param url
-	 * @param view
-	 */
-	@SuppressWarnings("deprecation")
-	public static void loadImageUser(String url, ImageView view) {
-		try {
-			if (url.indexOf("http://") != -1 || url.indexOf("https://") != -1) {
-				ImageLoader.getInstance().displayImage(url, view,
-						getImageOptions(R.mipmap.user_defaults));
-			} else {
-				ImageLoader.getInstance().displayImage(
-						Urls.HTTP_IMAGE_URL + url, view,
-						getImageOptions(R.mipmap.user_defaults));
-			}
-		} catch (Exception e) {
-			Glide.with(AppUtils.getAppContext())
-					.load(R.mipmap.user_defaults).into(view);
-		}
-	}
-
 	/**
 	 * 获取缓存大小
 	 *
 	 * @return
 	 */
-//	public static String getCacheSize() {
-//		DiskCache diskCache = (DiskCache) ImageLoader.getInstance().getDiscCache();
-//		File file = diskCache.get();
-//		return FileSizeUtil.getAutoFileOrFilesSize(file.getPath());
-//	}
-
-	/**
-	 * 清理缓存
-	 */
-	public static void clearCache() {
-		ImageLoader.getInstance().getDiscCache().clear();
-		ImageLoader.getInstance().getMemoryCache().clear();
-		ACache.getInstance().clear();
+	public static String getTotalCacheSize(Context context) throws Exception {
+		long cacheSize = getFolderSize(context.getCacheDir());
+		if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+			cacheSize += getFolderSize(context.getExternalCacheDir());
+		}
+		return getFormatSize(cacheSize);
 	}
 
+	public static long getFolderSize(File file) throws Exception {
+		long size = 0;
+		try {
+			File[] fileList = file.listFiles();
+			for (int i = 0; i < fileList.length; i++) {
+				// 如果下面还有文件
+				if (fileList[i].isDirectory()) {
+					size = size + getFolderSize(fileList[i]);
+				} else {
+					size = size + fileList[i].length();
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return size;
+	}
+
+	/**
+	 * 清除缓存
+	 * @param context
+	 */
+	public static void clearAllCache(Context context) {
+		deleteDir(context.getCacheDir());
+		if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+			deleteDir(context.getExternalCacheDir());
+		}
+	}
+
+	private static boolean deleteDir(File dir) {
+		if (dir != null && dir.isDirectory()) {
+			String[] children = dir.list();
+			for (int i = 0; i < children.length; i++) {
+				boolean success = deleteDir(new File(dir, children[i]));
+				if (!success) {
+					return false;
+				}
+			}
+		}
+		return dir.delete();
+	}
+
+
+	/**
+	 * 格式化单位
+	 * @param size
+	 * @return
+	 */
+	public static String getFormatSize(double size) {
+		double kiloByte = size / 1024;
+		if (kiloByte < 1) {
+//            return size + "Byte";
+			return "0K";
+		}
+
+		double megaByte = kiloByte / 1024;
+		if (megaByte < 1) {
+			BigDecimal result1 = new BigDecimal(Double.toString(kiloByte));
+			return result1.setScale(2, BigDecimal.ROUND_HALF_UP)
+					.toPlainString() + "K";
+		}
+
+		double gigaByte = megaByte / 1024;
+		if (gigaByte < 1) {
+			BigDecimal result2 = new BigDecimal(Double.toString(megaByte));
+			return result2.setScale(2, BigDecimal.ROUND_HALF_UP)
+					.toPlainString() + "M";
+		}
+
+		double teraBytes = gigaByte / 1024;
+		if (teraBytes < 1) {
+			BigDecimal result3 = new BigDecimal(Double.toString(gigaByte));
+			return result3.setScale(2, BigDecimal.ROUND_HALF_UP)
+					.toPlainString() + "GB";
+		}
+		BigDecimal result4 = new BigDecimal(teraBytes);
+		return result4.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString()
+				+ "TB";
+	}
 }
+

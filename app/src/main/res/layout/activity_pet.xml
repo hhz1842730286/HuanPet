@@ -1,14 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F0F1F5"
+    android:orientation="vertical"
     tools:context="com.jiyun.huanpet.ui.activity.home.activity.PetActivity">
-    <Button
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/MyPet"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/mAddPet"
-        android:text="如果没宠物就添加"
-        android:layout_centerInParent="true"/>
-</RelativeLayout>
+        >
+        <ImageView
+            android:id="@+id/Go_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/back_gray"
+            android:padding="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#616161"
+            android:textSize="20dp"
+            android:text="我的宠物"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#ECECEC"
+        />
+    <ListView
+        android:id="@+id/List_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

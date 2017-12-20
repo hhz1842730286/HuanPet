@@ -13,6 +13,8 @@ import android.content.pm.Signature;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
+import com.jiyun.huanpet.ui.activity.home.bean.Petadd;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,8 @@ import java.util.List;
  * </pre>
  */
 public final class AppUtils {
+
+    public static Petadd userInfo;
 
     private AppUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");

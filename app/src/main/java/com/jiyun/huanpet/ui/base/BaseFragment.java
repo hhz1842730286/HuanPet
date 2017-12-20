@@ -20,7 +20,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
     private boolean isVisibility;
     private boolean isViewCreated;
     private Bundle params;
-    private P mPresenter;
+    protected P mPresenter;
     public Bundle getParams() {
         return params;
     }
@@ -36,6 +36,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
         if (view!=null)
             isViewCreated=true;
         mPresenter=getPresenter();
+//        mPresenter.attchTo(this);
         findViewById(view);
         init();
         lazyLoad();

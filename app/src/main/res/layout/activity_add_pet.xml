@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F0F1F5"
+    android:id="@+id/Line"
     android:orientation="vertical"
     tools:context="com.jiyun.huanpet.ui.activity.home.activity.AddPetActivity">
 

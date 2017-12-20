@@ -1,14 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.jiyun.huanpet.ui.activity.home.activity.OrderActivity">
-     <Button
-         android:layout_width="wrap_content"
+     <RelativeLayout
+         android:layout_width="match_parent"
          android:layout_height="wrap_content"
-         android:text="查看订单详情"
-         android:id="@+id/order"
+         android:background="#F7F7F7"
+         >
+          <ImageView
+              android:id="@+id/Back_go"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:src="@mipmap/back_gray"
+              android:padding="20dp"
+              />
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_centerInParent="true"
+              android:text="我的订单"
+              android:textSize="20dp"
+              />
+     </RelativeLayout>
+     <View
+         android:layout_width="match_parent"
+         android:layout_height="1dp"
+         android:background="#C5C5C5"
          />
-</android.support.constraint.ConstraintLayout>
+     <android.support.design.widget.TabLayout
+         android:id="@+id/Tavlayout_order"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"/>
+     <android.support.v4.view.ViewPager
+         android:id="@+id/Viewpager"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         />
+</LinearLayout>

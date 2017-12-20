@@ -4,47 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F0F1F5"
     android:orientation="vertical"
-    android:background="#f0f1f5"
     tools:context="com.jiyun.huanpet.ui.activity.home.activity.UpdateUserNameActivity">
-   <RelativeLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_marginBottom="10dp"
-       >
-       <ImageView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:src="@mipmap/back_gray"
-           android:padding="10dp"
-           android:id="@+id/person_name_back"
-           android:layout_centerVertical="true"
-           />
-         <TextView
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="名称"
-             android:textSize="18sp"
-             android:layout_centerInParent="true"
-             android:id="@+id/person_title_text"
-             />
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="提交"
-           android:id="@+id/Submit"
-           android:layout_alignParentRight="true"
-           android:padding="10dp"
-           android:layout_centerVertical="true"
-           />
-   </RelativeLayout>
-    <EditText
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:background="#ffffff"
-       android:hint="请输入16自以内的(中文,数字,字母)"
-        android:id="@+id/person_name_edi"
-        android:maxLength ="16"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:id="@+id/Go_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/back_gray"
+            android:padding="15dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#262525"
+            android:textSize="20dp"
+            android:text="名称"
+            android:layout_centerInParent="true"
+            />
+        <TextView
+            android:id="@+id/Submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="提交"
+            android:layout_alignParentRight="true"
+            android:padding="10dp"
+            android:layout_marginTop="5dp"
+            />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#F1F1F1"
+        />
+    <EditText
+        android:id="@+id/Name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#fff"
+        android:hint="请输入16字以内的名称(中文,数字,字母)"
         />
 </LinearLayout>

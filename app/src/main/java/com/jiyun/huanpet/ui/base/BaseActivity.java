@@ -20,7 +20,7 @@ import java.lang.reflect.Type;
 
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity{
     private BaseFragment lastFragment;
-    private P mPresenter;
+    protected P mPresenter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

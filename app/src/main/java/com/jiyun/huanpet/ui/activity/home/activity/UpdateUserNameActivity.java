@@ -1,58 +1,93 @@
 package com.jiyun.huanpet.ui.activity.home.activity;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jiyun.huanpet.R;
+import com.jiyun.huanpet.presenter.contract.HomeContract;
+import com.jiyun.huanpet.presenter.presenter.HomePresenterImpl;
+import com.jiyun.huanpet.ui.activity.home.bean.FuJinBean;
+import com.jiyun.huanpet.ui.activity.home.bean.PetTypeBean;
+import com.jiyun.huanpet.ui.base.BaseActivity;
 
-public class UpdateUserNameActivity extends AppCompatActivity implements View.OnClickListener{
+import java.util.List;
 
-    private ImageView person_name_back;
+public class UpdateUserNameActivity extends BaseActivity<HomePresenterImpl> implements View.OnClickListener,HomeContract.HomeView {
+    private EditText Name;
+    private ImageView Go_back;
     private TextView Submit;
-    private EditText person_name_edi;
-    private Context mCon;
-    private SharedPreferences preferences;
-    private SharedPreferences.Editor edit;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_user_name);
-       mCon = UpdateUserNameActivity.this;
-        preferences = mCon.getSharedPreferences("Login",MODE_PRIVATE);
-        edit = preferences.edit();
-        initView();
+    protected int getLayoutId() {
+        return R.layout.activity_update_user_name;
     }
 
-    private void initView() {
-        person_name_back = (ImageView) findViewById(R.id.person_name_back);
-        person_name_back.setOnClickListener(this);
-        Submit = (TextView) findViewById(R.id.Submit);
+    @Override
+    protected void findViewById() {
+        Name = (EditText) findViewById(R.id.Name);
+        Go_back = (ImageView) findViewById(R.id.Go_back);
+        Go_back.setOnClickListener(this);
+        Submit= (TextView) findViewById(R.id.Submit);
         Submit.setOnClickListener(this);
-        person_name_edi = (EditText) findViewById(R.id.person_name_edi);
     }
 
     @Override
-    public void onClick(View v) {
-       switch (v.getId()){
-           case R.id.person_name_back:
-                finish();
-               break;
+    protected void init() {
 
-               case R.id.Submit:
-                   finish();
-                   String string = person_name_edi.getText().toString().trim();
-                   edit.putString("userName",string);
-                   edit.commit();
-                   Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
-                   break;
-       }
+    }
+
+    @Override
+    protected void loadData() {
+
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.Submit:
+                String name = Name.getText().toString().trim();
+                String date=Name.getText().toString().trim();
+                Intent intent = new Intent();
+                intent.putExtra("name", name);
+                intent.putExtra("date",date);
+                setResult(2000, intent);
+                finish();
+                break;
+            case R.id.Go_back:
+                finish();
+                break;
+
+        }
+    }
+
+
+    @Override
+    public void showMessage(String message) {
+
+    }
+
+    @Override
+    public void openProgress() {
+
+    }
+
+    @Override
+    public void closeProgress() {
+
+    }
+
+
+    @Override
+    public void fujinview(List<FuJinBean.DescBean> fuJinBean) {
+
+    }
+
+    @Override
+    public void petType(List<PetTypeBean.DescBean> descBeans) {
+
     }
 }

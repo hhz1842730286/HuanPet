@@ -6,11 +6,11 @@
  */
 package com.jiyun.huanpet.httputils;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * 
@@ -55,6 +55,19 @@ public class TokenUtil {
 		token = ConnectionUtils.getIp(context) + sdf.format(date) + "CD";
 
 		token = Md5Encrypt.md5(token, "utf-8");
+
+		return token;
+	}
+	public static String getToken(){
+
+		SharedPreferences tokenPreferences = AppUtils.appContext.getSharedPreferences("Token", Context.MODE_PRIVATE);
+		SharedPreferences.Editor edit = tokenPreferences.edit();
+		String string = tokenPreferences.getString("token", "no");
+		if (string.equals("no")){
+			edit.putString("token",createToken());
+			edit.commit();
+		}
+		String token = tokenPreferences.getString("token", "no");
 
 		return token;
 	}

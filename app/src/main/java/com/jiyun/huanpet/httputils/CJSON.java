@@ -1,13 +1,12 @@
 package com.jiyun.huanpet.httputils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import android.content.Context;
 
 import com.alibaba.fastjson.JSON;
 
-import android.content.Context;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class CJSON extends JSON {
 
@@ -112,7 +111,7 @@ public class CJSON extends JSON {
 		toContent(CHANNEL, "android");
 		json.append(COMMA);
 
-		toContent(TokenUtil.TOKEN, FileUtil.getToken());
+		toContent(TokenUtil.TOKEN, TokenUtil.getToken());
 		json.append(END_BRACES + COMMA);
 		json.append(START_CONTENT + BODY + END_CONTENT);
 		json.append(COLON);

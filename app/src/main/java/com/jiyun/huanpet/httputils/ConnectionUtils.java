@@ -6,15 +6,11 @@
  */
 package com.jiyun.huanpet.httputils;
 
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.os.AsyncTask;
 
 /**
  * @描述 :网络判断工具
@@ -91,7 +87,7 @@ public class ConnectionUtils {
 	public static String getIp(Context context) {
 
 		// 获取WiFi管理�?
-		WifiManager wifiManager = (WifiManager) context.getSystemService(context.WIFI_SERVICE);
+		WifiManager wifiManager = (WifiManager) AppUtils.appContext.getSystemService(context.WIFI_SERVICE);
 		// 判断wifi是否�?�?
 		if (!wifiManager.isWifiEnabled()) {
 			return "127.0.0.3";

@@ -1,12 +1,10 @@
 package com.jiyun.huanpet.model.net;
 
-import android.content.Context;
 import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.jiyun.huanpet.httputils.AppUtils;
 import com.jiyun.huanpet.httputils.CJSON;
 import com.jiyun.huanpet.model.api.HttpCallback;
 import com.jiyun.huanpet.model.api.HttpRequest;
@@ -219,6 +217,8 @@ public class OkHttpUtils implements HttpRequest{
             }
         });
     }
+
+
     private Cache getCache(){
         File file=new File(Environment.getExternalStorageDirectory()+"/Cache","responses");
         Cache cache = new Cache(file, 10 * 1024 * 1024);
@@ -259,4 +259,6 @@ public class OkHttpUtils implements HttpRequest{
             builder.add(key,value);
         }
     }
+
+
 }

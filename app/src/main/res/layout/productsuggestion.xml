@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#F7F7F7"
+    >
+<ImageView
+    android:id="@+id/Back"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:src="@mipmap/back_gray"
+    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="产品建议"
+        android:textColor="#000"
+        android:textSize="20dp"
+        />
+<Button
+    android:id="@+id/Send"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#F7F7F7"
+    android:text="发送"
+    android:layout_alignParentRight="true"
+    android:padding="20dp"
+    />
+</RelativeLayout>
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+ <EditText
+     android:layout_width="match_parent"
+     android:layout_height="200dp"
+     android:background="@drawable/shape_pet_type"
+     android:layout_margin="20dp"
+     />
+    <EditText
+        android:id="@+id/Edit_Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="写下你的建议让我们做的更好"
+        android:layout_marginTop="20dp"
+        android:layout_margin="30dp"
+        android:background="@null"
+        />
+</RelativeLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0/250"
+        android:layout_alignParentRight="true"
+        android:padding="10dp"
+        />
+</RelativeLayout>
+</LinearLayout>

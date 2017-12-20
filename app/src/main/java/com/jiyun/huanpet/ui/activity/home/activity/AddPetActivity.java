@@ -1,6 +1,7 @@
 package com.jiyun.huanpet.ui.activity.home.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
@@ -8,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,10 +25,10 @@ import com.codbking.widget.DatePickDialog;
 import com.codbking.widget.OnSureLisener;
 import com.codbking.widget.bean.DateType;
 import com.jiyun.huanpet.R;
-import com.jiyun.huanpet.presenter.contract.HomeContract;
-import com.jiyun.huanpet.presenter.presenter.HomePresenterImpl;
-import com.jiyun.huanpet.ui.activity.home.bean.FuJinBean;
-import com.jiyun.huanpet.ui.activity.home.bean.PetTypeBean;
+import com.jiyun.huanpet.config.Urls;
+import com.jiyun.huanpet.httputils.CJSON;
+import com.jiyun.huanpet.presenter.petpresenter.Petpresenter;
+import com.jiyun.huanpet.ui.activity.home.bean.Petadd;
 import com.jiyun.huanpet.ui.base.BaseActivity;
 import com.jiyun.huanpet.utils.utilspet.Formation;
 
@@ -37,11 +39,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 import static com.jiyun.huanpet.constants.Constants.REQUESTCODE;
-//fdsbaifsdgsidjahdjskhfdjsak
-public class AddPetActivity extends BaseActivity<HomePresenterImpl> implements View.OnClickListener, HomeContract.HomeView {
+//添加宠物
+public class AddPetActivity extends BaseActivity<Petpresenter> implements View.OnClickListener {
     private ImageView Back_gray;
     private RelativeLayout Pet_Type;
     private RelativeLayout immune_state;
@@ -58,6 +68,9 @@ public class AddPetActivity extends BaseActivity<HomePresenterImpl> implements V
     private TextView Nick_Name,Date_of_birth,Weight_figure,Sterilization;
     private TextView yes;
     private TextView no;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_add_pet;
@@ -76,6 +89,7 @@ public class AddPetActivity extends BaseActivity<HomePresenterImpl> implements V
         immune_state = (RelativeLayout) findViewById(R.id.immune_state);
         immune_state.setOnClickListener(this);
         Head_portrait_imager= (ImageView) findViewById(R.id.Head_portrait_imager);
+
         Nickname= (RelativeLayout) findViewById(R.id.Nickname);
         Nickname.setOnClickListener(this);
         Nick_Name= (TextView) findViewById(R.id.Nick_Name);
@@ -97,7 +111,40 @@ public class AddPetActivity extends BaseActivity<HomePresenterImpl> implements V
 
     @Override
     protected void loadData() {
-
+//        preferences =AddPetActivity.this.getSharedPreferences("Login", MODE_PRIVATE);
+//        editor = preferences.edit();
+//        String userId = preferences.getString("userId", null);
+//        editor.commit();
+        Request.Builder builder = new Request.Builder();
+        OkHttpClient build = new OkHttpClient.Builder().build();
+        Map<String,Object> mapq=new HashMap<>();
+        Petadd petadd=new Petadd();
+        mapq.put("petName",petadd.getPetName());
+        mapq.put("PetType",petadd.getPetType());
+        mapq.put("userName",petadd.getUserName());
+        mapq.put("CreateTime",petadd.getCreateTime());
+        mapq.put("petBirthTime",petadd.getPetBirthTime());
+        mapq.put("petInfo",petadd.getPetInfo());
+        mapq.put("petTypeName",petadd.getPetTypeName());
+        mapq.put("isSterilization",petadd.getIsSterilization());
+        mapq.put("petWeight",petadd.getPetWeight());
+        mapq.put("isimmune",petadd.getIsimmune());
+        mapq.put("userId",petadd.getUserId());
+        FormBody.Builder bodyBuilder = new FormBody.Builder();
+        bodyBuilder.add("data", CJSON.toJSONMap(mapq));
+        Request request = builder.url(Urls.INDENT).post(bodyBuilder.build()).build();
+        Call call = build.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("-----------",e.getMessage());
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String string = response.body().string();
+                Log.e("tttttttttttt",string);
+            }
+        });
     }
     @Override
     public void onClick(View v) {
@@ -191,7 +238,7 @@ public class AddPetActivity extends BaseActivity<HomePresenterImpl> implements V
         no.setOnClickListener(this);
         popupWindow.setContentView(inflate);
         popupWindow.setBackgroundDrawable(new ColorDrawable(15189737));
-        popupWindow.showAtLocation(findViewById(R.id.Edit_text), Gravity.CENTER, 0, 0);
+        popupWindow.showAtLocation(findViewById(R.id.Line), Gravity.CENTER, 0, 400);
         WindowManager.LayoutParams lp = AddPetActivity.this.getWindow().getAttributes();
 //0到1,调整亮度暗到全亮
         lp.alpha = 0.5f;
@@ -221,7 +268,7 @@ public class AddPetActivity extends BaseActivity<HomePresenterImpl> implements V
         cancel.setOnClickListener(this);
         popupWindow.setContentView(inflate);
         popupWindow.setBackgroundDrawable(new ColorDrawable(15189737));
-        popupWindow.showAtLocation(findViewById(R.id.Edit_text), Gravity.CENTER, 0, 400);
+        popupWindow.showAtLocation(findViewById(R.id.Line), Gravity.CENTER, 0, 400);
         WindowManager.LayoutParams lp = AddPetActivity.this.getWindow().getAttributes();
 //0到1,调整亮度暗到全亮
         lp.alpha = 0.5f;
@@ -399,31 +446,4 @@ public class AddPetActivity extends BaseActivity<HomePresenterImpl> implements V
     }
 
 
-
-
-    @Override
-    public void showMessage(String message) {
-
-    }
-
-    @Override
-    public void openProgress() {
-
-    }
-
-    @Override
-    public void closeProgress() {
-
-    }
-
-
-    @Override
-    public void fujinview(List<FuJinBean.DescBean> fuJinBean) {
-
-    }
-
-    @Override
-    public void petType(List<PetTypeBean.DescBean> descBeans) {
-
-    }
 }

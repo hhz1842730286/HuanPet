@@ -1,9 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
     tools:context="com.jiyun.huanpet.ui.activity.home.activity.PetTypeActivity">
-
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#F7F7F7"
+        >
+        <ImageView
+            android:id="@+id/Get_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/back_gray"
+            android:padding="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="20dp"
+            android:text="宠物类型"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/pet_type"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="输入宠物品种查询"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/search_bar_icon_normal"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="10dp"
+            />
+    </RelativeLayout>
+    <android.support.design.widget.TabLayout
+        android:id="@+id/TabLayout_pet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <ListView
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="500dp"
+        android:background="#FFF0F0F0"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="热门宠物"
+        android:padding="10dp"
+        android:background="#F0F1F5"
+        />
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:orientation="horizontal"
+     >
+     <LinearLayout
+         android:layout_width="350dp"
+         android:layout_height="wrap_content"
+         android:orientation="vertical"
+         >
+         <LinearLayout
+             android:layout_width="350dp"
+             android:layout_height="60dp"
+             >
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:textColor="#636363"
+                 android:textSize="15dp"
+                 android:text="猫--老黑"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginTop="10dp"
+                 android:background="@drawable/shape_pet_type"
+                 android:padding="10dp"
+                 />
+         </LinearLayout>
+         <TextView
+             android:layout_width="350dp"
+             android:layout_height="40dp"
+             android:text="M"
+             android:padding="10dp"
+             android:background="#F0F1F5"
+             />
+         <TextView
+             android:layout_width="350dp"
+             android:layout_height="wrap_content"
+             android:textSize="15dp"
+             android:padding="10dp"
+             android:text="猫--咪咪"
+             />
+         <TextView
+             android:layout_width="350dp"
+             android:layout_height="wrap_content"
+             android:textSize="15dp"
+             android:padding="10dp"
+             android:text="猫--老黑"
+             />
+         <View
+             android:layout_width="350dp"
+             android:layout_height="1dp"
+             android:background="#EBEBEB"
+             />
+     </LinearLayout>
+<com.zaaach.citypicker.view.SideLetterBar
+    android:layout_width="33dp"
+    android:layout_height="wrap_content" />
+ </LinearLayout>
+</LinearLayout>
