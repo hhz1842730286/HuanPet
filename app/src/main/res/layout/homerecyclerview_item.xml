@@ -35,19 +35,54 @@
                    android:layout_toRightOf="@+id/home_item_image"
                     android:layout_alignParentBottom="true"
                     android:paddingLeft="10dp"
-                   android:layout_marginBottom="8dp"
+                   android:layout_marginBottom="12dp"
                    android:id="@+id/jianjie_text"
+                   android:maxLines="1"
+                   android:maxEms="15"
+                   android:ellipsize="end"
                    />
-         <TextView
+
+         <LinearLayout
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:text="价格"
-             android:textColor="#ff9a02"
-             android:textSize="20sp"
+             android:orientation="vertical"
              android:layout_alignParentRight="true"
              android:layout_centerVertical="true"
-             android:id="@+id/jiage_text"
-             />
+             >
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="价格"
+                 android:textColor="#ff9a02"
+                 android:textSize="20sp"
+                 android:id="@+id/jiage_text"
+                 android:layout_gravity="center_horizontal"
+                 android:padding="5dp"
+                 />
+             <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal"
+                 >
+                 <ImageView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:src="@mipmap/location"
+                     android:paddingLeft="5dp"
+                     android:paddingTop="5dp"
+                     android:paddingBottom="5dp"
+                     android:id="@+id/dingwei"
+                     />
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="距离1000km"
+                     android:padding="5dp"
+                     android:id="@+id/distance"
+
+                     />
+             </LinearLayout>
+         </LinearLayout>
      </RelativeLayout>
 
 </LinearLayout>

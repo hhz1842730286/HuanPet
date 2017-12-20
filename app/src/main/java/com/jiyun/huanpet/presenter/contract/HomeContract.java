@@ -21,5 +21,7 @@ public interface HomeContract {
         void fujinurl(String beginIndex,String coordX,String coordY,String endIndex,String orderBy);
 
         void petType(String beginIndex,String endIndex,String petTypeCode);
+
+        void TypeCode(String beginIndex,String endIndex,String typeCode);
     }
 }

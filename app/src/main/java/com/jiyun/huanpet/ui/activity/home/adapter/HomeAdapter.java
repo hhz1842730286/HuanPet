@@ -41,9 +41,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         String family = list.get(position).getFamily();
         String address = list.get(position).getAddress();
         String userImage = list.get(position).getUserImage();
+        int distance = list.get(position).getDistance();
         double price = list.get(position).getPrice();
         holder.name.setText(family);
         holder.jianjie.setText(address);
+        holder.distance.setText("距"+distance+"米");
         holder.jiage.setText("¥"+price+"起");
         Glide.with(mCon).load(userImage).into(holder.circleImageView);
     }
@@ -54,8 +56,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView name, jianjie, jiage;
+        private TextView name, jianjie, jiage,distance;
         private CircleImageView circleImageView;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -63,6 +66,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             jianjie = itemView.findViewById(R.id.jianjie_text);
             circleImageView = itemView.findViewById(R.id.home_item_image);
             jiage = itemView.findViewById(R.id.jiage_text);
+            distance = itemView.findViewById(R.id.distance);
 
         }
     }

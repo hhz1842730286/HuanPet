@@ -39,4 +39,13 @@ public class HomeLogin implements IHomeLogin {
         map.put("petTypeCode",petTypeCode);
         MyFactor.httpUtils().post(Urls.PETCODE,map,callback);
     }
+
+    @Override
+    public void TypeCode(String beginIndex, String endIndex, String typeCode, HttpCallback callback) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("beginIndex",beginIndex);
+        map.put("endIndex",endIndex);
+        map.put("typeCode",typeCode);
+     MyFactor.httpUtils().post(Urls.PETCODE,map,callback);
+    }
 }

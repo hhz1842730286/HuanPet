@@ -69,4 +69,19 @@ public class HomePresenterImpl implements HomeContract.HomePresenter {
           }
       });
     }
+
+    @Override
+    public void TypeCode(String beginIndex, String endIndex, String typeCode) {
+        iHomeLogin.TypeCode(beginIndex, endIndex, typeCode, new HttpCallback() {
+            @Override
+            public void success(Object o) {
+                String string = o.toString();
+            }
+
+            @Override
+            public void error(String error) {
+
+            }
+        });
+    }
 }

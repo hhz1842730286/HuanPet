@@ -13,5 +13,6 @@ public interface IHomeLogin<T> {
     <T>void fujin(String beginIndex,String coordX,String coordY,String endIndex,String orderBy,HttpCallback<T> callback);
     //宠物类型
     <T>void petType(String beginIndex,String endIndex,String petTypeCode,HttpCallback<T> callback);
-
+    //宠物类型筛选
+    <T>void TypeCode(String beginIndex, String endIndex, String typeCode,HttpCallback<T> callback);
 }
