@@ -23,8 +23,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.codbking.widget.DatePickDialog;
-import com.codbking.widget.bean.DateType;
 import com.jiyun.huanpet.R;
 import com.jiyun.huanpet.presenter.contract.PersonalInfomationContract;
 import com.jiyun.huanpet.presenter.presenter.PersonalInfomationPresenterImpl;
@@ -35,9 +33,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
-import static android.R.attr.x;
 import static com.jiyun.huanpet.constants.Constants.REQUESTCODE;
 
 /**
@@ -75,6 +74,9 @@ public class PersonalInfomationActivity extends BaseActivity<PersonalInfomationP
     private StringBuffer lend_time;
     private SharedPreferences preferences;
     private SharedPreferences.Editor edit;
+    private int[] year1;
+    private int[] month1;
+    private int[] day1;
 
     @Override
     protected int getLayoutId() {
@@ -140,10 +142,11 @@ public class PersonalInfomationActivity extends BaseActivity<PersonalInfomationP
             }
         });
         Calendar c = Calendar.getInstance();
-        final int[] year1 = {c.get(Calendar.YEAR)};
+        year1 = new int[]{c.get(Calendar.YEAR)};
         c.add(Calendar.MONTH, 1);
-        final int[] month1 = {c.get(Calendar.MONTH)};
-        final int[] day1 = {c.get(Calendar.DAY_OF_MONTH)};
+        month1 = new int[]{c.get(Calendar.MONTH)};
+        day1 = new int[]{c.get(Calendar.DAY_OF_MONTH)};
+        lend_time = new StringBuffer();
 //        tv1.setText(year1+"-"+month1+"-"+day1);
         datePicker.init(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth(), new DatePicker.OnDateChangedListener() {
             @Override
@@ -152,7 +155,7 @@ public class PersonalInfomationActivity extends BaseActivity<PersonalInfomationP
                 month1[0] = monthOfYear + 1;
                 day1[0] = dayOfMonth;
 
-                lend_time = new StringBuffer();
+                 lend_time.delete(0,lend_time.length()+1);
                 lend_time.append(year1[0]);
                 lend_time.append("-");
                 lend_time.append(month1[0]);
@@ -208,9 +211,19 @@ public class PersonalInfomationActivity extends BaseActivity<PersonalInfomationP
         switch (v.getId()) {
             case R.id.time_Determine:
                 timewindow.dismiss();
-                edit.putString("birth",lend_time.toString());
-                edit.commit();
-                Toast.makeText(mCon, lend_time.toString(), Toast.LENGTH_SHORT).show();
+                if(lend_time.length() == 0){
+                    Date d = new Date();
+                    System.out.println(d);
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    String dateNowStr = sdf.format(d);
+
+                    Toast.makeText(mCon, dateNowStr, Toast.LENGTH_SHORT).show();
+                }else {
+                    edit.putString("birth",lend_time.toString());
+                    edit.commit();
+                    Toast.makeText(mCon, lend_time, Toast.LENGTH_SHORT).show();
+                }
+
                 break;
             case R.id.time_cancel:
                 timewindow.dismiss();

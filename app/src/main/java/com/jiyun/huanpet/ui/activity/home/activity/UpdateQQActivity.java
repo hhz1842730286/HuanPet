@@ -37,13 +37,13 @@ public class UpdateQQActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void initView() {
-        person_name_back = (ImageView) findViewById(R.id.person_name_back);
+        person_name_back = (ImageView) findViewById(R.id.Go_back);
         person_name_back.setOnClickListener(this);
         person_title_text = (TextView) findViewById(R.id.person_title_text);
         person_title_text.setText("QQ");
         Submit = (TextView) findViewById(R.id.Submit);
         Submit.setOnClickListener(this);
-        person_name_edi = (EditText) findViewById(R.id.person_name_edi);
+        person_name_edi = (EditText) findViewById(R.id.Name);
         person_name_edi.setHint("请输入你的QQ号");
     }
 
@@ -51,7 +51,7 @@ public class UpdateQQActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.person_name_back:
+            case R.id.Go_back:
                 finish();
                 break;
 

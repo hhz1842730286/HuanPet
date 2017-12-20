@@ -26,6 +26,7 @@
             android:textSize="20dp"
             android:text="名称"
             android:layout_centerInParent="true"
+            android:id="@+id/person_title_text"
             />
         <TextView
             android:id="@+id/Submit"
