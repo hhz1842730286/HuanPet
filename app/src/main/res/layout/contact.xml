@@ -64,7 +64,7 @@
         </RelativeLayout>
     </LinearLayout>
     <TextView
-        android:id="@+id/cancel"
+        android:id="@+id/pop_cancel"
         android:layout_marginTop="5sp"
         android:layout_marginLeft="15sp"
         android:layout_marginRight="15sp"

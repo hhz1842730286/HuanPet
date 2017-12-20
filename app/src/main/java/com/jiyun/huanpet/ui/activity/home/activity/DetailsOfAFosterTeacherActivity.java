@@ -66,6 +66,7 @@ public class DetailsOfAFosterTeacherActivity extends BaseActivity<DetailsOfAFost
     private RelativeLayout dial;
     private RelativeLayout send_message;
     private String phone;
+    private TextView pop_cancel;
 
     @Override
     protected int getLayoutId() {
@@ -77,6 +78,7 @@ public class DetailsOfAFosterTeacherActivity extends BaseActivity<DetailsOfAFost
     @Override
     protected void findViewById() {
         ign_out = (ImageView) findViewById(R.id.ign_out);
+        ign_out.setOnClickListener(this);
         banner = (Banner) findViewById(R.id.banner);
         headPortrait = (ImageView) findViewById(R.id.headPortrait);
         name = (TextView) findViewById(R.id.name);
@@ -118,6 +120,8 @@ public class DetailsOfAFosterTeacherActivity extends BaseActivity<DetailsOfAFost
         dial.setOnClickListener(this);
         send_message = inflate.findViewById(R.id.send_message);
         send_message.setOnClickListener(this);
+        pop_cancel = inflate.findViewById(R.id.pop_cancel);
+        pop_cancel.setOnClickListener(this);
     }
 
     @Override
@@ -179,6 +183,10 @@ public class DetailsOfAFosterTeacherActivity extends BaseActivity<DetailsOfAFost
                 finish();
                 break;
             case R.id.send_message:
+
+                break;
+            case R.id.pop_cancel:
+                pop.dismiss();
                 break;
         }
     }
