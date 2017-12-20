@@ -25,6 +25,7 @@ import java.util.Set;
  *     blog  : http://blankj.com
  *     time  : 2016/10/18
  *     desc  : 进程相关工具类
+ *     支持：启动一个进程，查找特定进程、判断特定进程是否在运行、删除一个进程
  * </pre>
  */
 public final class ProcessUtils {
@@ -41,6 +42,7 @@ public final class ProcessUtils {
      * @return 前台应用包名
      */
     public static String getForegroundProcessName() {
+        //获取前台线程包名
         ActivityManager manager = (ActivityManager) Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningAppProcessInfo> pInfo = manager.getRunningAppProcesses();
         if (pInfo != null && pInfo.size() != 0) {
@@ -67,10 +69,16 @@ public final class ProcessUtils {
                         return null;
                     }
                     UsageStatsManager usageStatsManager = (UsageStatsManager) Utils.getApp().getSystemService(Context.USAGE_STATS_SERVICE);
+                    //endTime结束时间
+                    // currentTimeMillis用法: 可以用法获取当前时间的毫秒数,可以通过毫秒数进行时间比较,时间转化以及时间格式化等。
+                    //System.currentTimeMillis()产生一个当前的毫秒
                     long endTime = System.currentTimeMillis();
+                    //beginTime 开始时间
                     long beginTime = endTime - 86400000 * 7;
                     List<UsageStats> usageStatses = usageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_BEST, beginTime, endTime);
-                    if (usageStatses == null || usageStatses.isEmpty()) return null;
+                    if (usageStatses == null || usageStatses.isEmpty()) {
+                        return null;
+                    }
                     UsageStats recentStats = null;
                     for (UsageStats usageStats : usageStatses) {
                         if (recentStats == null || usageStats.getLastTimeUsed() > recentStats.getLastTimeUsed()) {
@@ -139,14 +147,18 @@ public final class ProcessUtils {
     public static boolean killBackgroundProcesses(@NonNull final String packageName) {
         ActivityManager am = (ActivityManager) Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningAppProcessInfo> info = am.getRunningAppProcesses();
-        if (info == null || info.size() == 0) return true;
+        if (info == null || info.size() == 0) {
+            return true;
+        }
         for (ActivityManager.RunningAppProcessInfo aInfo : info) {
             if (Arrays.asList(aInfo.pkgList).contains(packageName)) {
                 am.killBackgroundProcesses(packageName);
             }
         }
         info = am.getRunningAppProcesses();
-        if (info == null || info.size() == 0) return true;
+        if (info == null || info.size() == 0) {
+            return true;
+        }
         for (ActivityManager.RunningAppProcessInfo aInfo : info) {
             if (Arrays.asList(aInfo.pkgList).contains(packageName)) {
                 return false;

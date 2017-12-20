@@ -102,7 +102,6 @@ public class FosterteacherActivity extends BaseActivity<FosterteacherPresenter> 
     private RelativeLayout photograph;
     private RelativeLayout album;
     private TextView cancel;
-
     private Intent intent;
     private String filePath;
     private Uri imageUri;
@@ -110,7 +109,6 @@ public class FosterteacherActivity extends BaseActivity<FosterteacherPresenter> 
     private ImageView tempImage;
     public static final int TAKE_PHOTO = 100;
     public static final int CHOOS_PHOTO = 2;
-
     private Bitmap bitmap;
     private static final int IMAGE = 1;
     private java.lang.String imaePath;
@@ -120,7 +118,6 @@ public class FosterteacherActivity extends BaseActivity<FosterteacherPresenter> 
     protected int getLayoutId() {
         return R.layout.activity_fosterteacher;
     }
-
     @Override
     protected void findViewById() {
         tuichu = (ImageView) findViewById(R.id.tuichu);
@@ -184,7 +181,6 @@ public class FosterteacherActivity extends BaseActivity<FosterteacherPresenter> 
         shuttleImg = (CheckBox) findViewById(R.id.shuttleImg);
         shuttleImg.setOnClickListener(this);
         inflate = getLayoutInflater().inflate(R.layout.popup, null);
-
         upload = inflate.findViewById(R.id.upload);
         upload.setOnClickListener(this);
         photograph = inflate.findViewById(R.id.photograph);
@@ -194,12 +190,12 @@ public class FosterteacherActivity extends BaseActivity<FosterteacherPresenter> 
         cancel = inflate.findViewById(R.id.cancel);
         cancel.setOnClickListener(this);
     }
-
-
-
     @Override
     protected void init() {
-
+        String string = phone_number.getText().toString();
+        Intent intent = new Intent(this,DetailsOfAFosterTeacherActivity.class);
+        intent.putExtra("phone",string);
+        startActivity(intent);
     }
 
     @Override
@@ -217,8 +213,6 @@ public class FosterteacherActivity extends BaseActivity<FosterteacherPresenter> 
                 finish();
                 break;
             case R.id.real_name:
-                break;
-            case R.id.phone_number:
                 break;
             case R.id.home_address:
                 break;
@@ -371,14 +365,6 @@ public class FosterteacherActivity extends BaseActivity<FosterteacherPresenter> 
                 break;
             //这个是拍照的ID
             case R.id.photograph:
-
-
-              /*  if(ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
-                    ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA,Manifest.permission.READ_EXTERNAL_STORAGE},TAKE_PHOTO);
-                    openCamera();
-                }else{
-                    openCamera();
-                }*/
                 openTakePhoto();
                 pop.dismiss();
                 break;
@@ -399,8 +385,6 @@ public class FosterteacherActivity extends BaseActivity<FosterteacherPresenter> 
                 break;
         }
     }
-
-
     private void openTakePhoto() {
         /**
          * 在启动拍照之前最好先判断一下sdcard是否可用
@@ -413,35 +397,6 @@ public class FosterteacherActivity extends BaseActivity<FosterteacherPresenter> 
             Toast.makeText(this, "sdcard不可用", Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
-    private void openCamera(){
-
-        //创建新的文件
-        File outputImage = new File(getFilesDir(), "output_img.jpg");
-        try {
-            if (outputImage.exists()) {
-                outputImage.delete();
-            }
-            outputImage.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        //获取照片存放的url
-        if (Build.VERSION.SDK_INT >= 24) {
-            uriForFile = FileProvider.getUriForFile(this, "com.example.cameraalbumtest.fileprovider", outputImage);
-        } else {
-            uriForFile = Uri.fromFile(outputImage);
-        }
-        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, uriForFile);
-        startActivityForResult(intent, TAKE_PHOTO);
-
-    }
-
-
     private void openAlbum() {
         Intent intent = new Intent("android.intent.action.GET_CONTENT");
         intent.setType("image/*");
@@ -530,17 +485,6 @@ public class FosterteacherActivity extends BaseActivity<FosterteacherPresenter> 
                 }
 
                 break;
-           /* case TAKE_PHOTO:
-                if (resultCode == RESULT_OK) {
-                    try {
-                        bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uriForFile));
-                        tempImage.setImageBitmap(bitmap);
-                        Log.e( "onActivityResult: ", bitmap.toString());
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                }
-                break;*/
             case CHOOS_PHOTO:
                 if (resultCode == RESULT_OK){
                     //判断手机版本号
