@@ -14,6 +14,6 @@ public interface BindPhoneContract {
 
     }
     interface BindPhonePresenter extends BasePresenter<BindPhoneView>{
-
+        void thirdQQ(String userPhone,String userName,String password,String userImage,String threeId);
     }
 }

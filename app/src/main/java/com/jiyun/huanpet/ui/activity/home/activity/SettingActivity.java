@@ -33,6 +33,9 @@ public class SettingActivity extends BaseActivity<HomePresenterImpl> implements 
     private Button Quit;
     private TextView File;
     private Context context=this;
+    private Context mCon;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor edit;
 
     @Override
     protected int getLayoutId() {
@@ -41,6 +44,9 @@ public class SettingActivity extends BaseActivity<HomePresenterImpl> implements 
 
     @Override
     protected void findViewById() {
+        mCon = SettingActivity.this;
+        preferences = mCon.getSharedPreferences("Login",MODE_PRIVATE);
+        edit = preferences.edit();
         Back_return = (ImageView) findViewById(R.id.Back_return);
         Product = (RelativeLayout) findViewById(R.id.Product);
         New_function = (RelativeLayout) findViewById(R.id.New_function);
@@ -136,8 +142,8 @@ public class SettingActivity extends BaseActivity<HomePresenterImpl> implements 
                                 }).show();
                 break;
             case R.id.Quit:
-                Intent intent=new Intent(SettingActivity.this,LoginActivity.class);
-                startActivity(intent);
+                edit.clear();
+                edit.commit();
                 finish();
                 break;
         }

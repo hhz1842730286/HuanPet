@@ -16,6 +16,9 @@ import com.jiyun.huanpet.presenter.contract.RegisterContract;
 import com.jiyun.huanpet.presenter.presenter.RegisterPresenterImpl;
 import com.jiyun.huanpet.ui.activity.home.bean.RegisterBean;
 import com.jiyun.huanpet.ui.base.BaseActivity;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -45,6 +48,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenterImpl> implem
     private EditText Username;
     private EditText password;
     private RegisterContract.RegisterPresenter mPresenter;
+    private UMAuthListener authListener;
 
     @Override
     protected int getLayoutId() {
@@ -66,6 +70,64 @@ public class RegisterActivity extends BaseActivity<RegisterPresenterImpl> implem
         mQQRegister = (TextView) findViewById(R.id.mQQRegister);
         mBtnRegister = (Button) findViewById(R.id.mBtnRegister);
 
+        authListener = new UMAuthListener() {
+            /**
+             * @desc 授权开始的回调
+             * @param platform 平台名称
+             */
+            @Override
+            public void onStart(SHARE_MEDIA platform) {
+
+            }
+
+            /**
+             * @desc 授权成功的回调
+             * @param platform 平台名称
+             * @param action 行为序号，开发者用不上
+             * @param data 用户资料返回
+             */
+            @Override
+            public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
+//                uid      QQ用户id
+//                name     QQ用户昵称
+//                gender   QQ用户性别
+//                iconurl  QQ用户头像
+                String uid = data.get("uid");
+                String name = data.get("name");
+                String gender = data.get("gender");
+                String iconurl = data.get("iconurl");
+
+//                Toast.makeText(RegisterActivity.this, "成功了", Toast.LENGTH_SHORT).show();
+                Intent in = new Intent(RegisterActivity.this, BindPhoneActivity.class);
+                in.putExtra("uid",uid);
+                in.putExtra("name",name);
+                in.putExtra("gender",gender);
+                in.putExtra("iconurl",iconurl);
+                startActivity(in);
+            }
+
+            /**
+             * @desc 授权失败的回调
+             * @param platform 平台名称
+             * @param action 行为序号，开发者用不上
+             * @param t 错误原因
+             */
+            @Override
+            public void onError(SHARE_MEDIA platform, int action, Throwable t) {
+
+                Toast.makeText(RegisterActivity.this, "失败：" + t.getMessage(),                                  Toast.LENGTH_LONG).show();
+            }
+
+            /**
+             * @desc 授权取消的回调
+             * @param platform 平台名称
+             * @param action 行为序号，开发者用不上
+             */
+            @Override
+            public void onCancel(SHARE_MEDIA platform, int action) {
+                Toast.makeText(RegisterActivity.this, "取消了", Toast.LENGTH_LONG).show();
+            }
+        };
 
 
     }
@@ -118,7 +180,8 @@ public class RegisterActivity extends BaseActivity<RegisterPresenterImpl> implem
                 startActivity(new Intent(this, BindPhoneActivity.class));
                 break;
             case R.id.mQQRegister:
-                startActivity(new Intent(this, BindPhoneActivity.class));
+                UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.QQ, authListener);
+
                 break;
                 case R.id.mBtnRegister:
 
@@ -140,5 +203,10 @@ public class RegisterActivity extends BaseActivity<RegisterPresenterImpl> implem
             Toast.makeText(this, "注册失败，请重新注册", Toast.LENGTH_SHORT).show();
         }
 
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
 }

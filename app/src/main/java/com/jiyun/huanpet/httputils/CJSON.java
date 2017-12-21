@@ -1,6 +1,7 @@
 package com.jiyun.huanpet.httputils;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.alibaba.fastjson.JSON;
 
@@ -69,6 +70,8 @@ public class CJSON extends JSON {
 	 * 平台
 	 */
 	public static final String CHANNEL = "channel";
+
+	public static final String USERID = "userId";
 	private static StringBuffer json;
 
 	/**
@@ -109,6 +112,12 @@ public class CJSON extends JSON {
 		toContent(ConnectionUtils.IP, ConnectionUtils.getIp(context));
 		json.append(COMMA);
 		toContent(CHANNEL, "android");
+		SharedPreferences preferences = context.getSharedPreferences("Login",Context.MODE_PRIVATE);
+         String userId = preferences.getString("userId", "");
+        if (!"".equals(userId)){
+            json.append(COMMA);
+          toContent(USERID,userId);
+        }
 		json.append(COMMA);
 
 		toContent(TokenUtil.TOKEN, TokenUtil.getToken());

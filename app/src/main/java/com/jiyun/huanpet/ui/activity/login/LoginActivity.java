@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.jiyun.huanpet.R;
 import com.jiyun.huanpet.constants.Constants;
 import com.jiyun.huanpet.httputils.Md5Encrypt;
+import com.jiyun.huanpet.httputils.TokenUtil;
 import com.jiyun.huanpet.presenter.contract.LoginContract;
 import com.jiyun.huanpet.presenter.presenter.LoginPresenterImpl;
 import com.jiyun.huanpet.ui.activity.home.activity.HomeActivity;
@@ -46,6 +47,7 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements L
 
     @Override
     protected void findViewById() {
+
         preferences = LoginActivity.this.getSharedPreferences("Login", MODE_PRIVATE);
         editor = preferences.edit();
         mPresenter = new LoginPresenterImpl(this);
@@ -91,6 +93,7 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements L
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.mBtnLogin:
+                TokenUtil.setToken();
                 String user = mLoginPhoneEdit.getText().toString().trim();
                 String word = mLoginPassWordEdit.getText().toString().trim();
 //                String s = Md5Encrypt.md5(word, "UTF-8");

@@ -60,16 +60,19 @@ public class TokenUtil {
 	}
 	public static String getToken(){
 
-		SharedPreferences tokenPreferences = AppUtils.appContext.getSharedPreferences("Token", Context.MODE_PRIVATE);
-		SharedPreferences.Editor edit = tokenPreferences.edit();
-		String string = tokenPreferences.getString("token", "no");
-		if (string.equals("no")){
-			edit.putString("token",createToken());
-			edit.commit();
-		}
-		String token = tokenPreferences.getString("token", "no");
+		SharedPreferences tokenPreferences = AppUtils.appContext.getSharedPreferences("SetToken", Context.MODE_PRIVATE);
+		String token = tokenPreferences.getString("token", null);
 
 		return token;
 	}
-
+      public static String setToken(){
+		  SharedPreferences tokenPreferences = AppUtils.appContext.getSharedPreferences("SetToken", Context.MODE_PRIVATE);
+		  SharedPreferences.Editor edit = tokenPreferences.edit();
+		  String string = tokenPreferences.getString("token", "no");
+		  if (string.equals("no")){
+			  edit.putString("token",createToken());
+			  edit.commit();
+		  }
+		return string;
+	  }
 }

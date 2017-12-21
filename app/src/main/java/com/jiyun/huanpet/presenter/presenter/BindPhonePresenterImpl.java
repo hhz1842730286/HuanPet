@@ -16,4 +16,9 @@ public class BindPhonePresenterImpl implements BindPhoneContract.BindPhonePresen
     public void detach() {
 
     }
+
+    @Override
+    public void thirdQQ(String userPhone, String userName, String password, String userImage, String threeId) {
+
+    }
 }

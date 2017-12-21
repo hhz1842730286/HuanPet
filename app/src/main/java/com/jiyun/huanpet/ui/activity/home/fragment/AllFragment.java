@@ -57,13 +57,13 @@ public class AllFragment extends BaseFragment<Indentpresenter> implements IInden
         preferences =getContext().getSharedPreferences("Login", MODE_PRIVATE);
         editor = preferences.edit();
         String userId = preferences.getString("userId", "");
-        editor.commit();
+        Log.e("t",userId);
 //        mPresenters.indent(userId,0);
         Request.Builder builder = new Request.Builder();
         OkHttpClient build = new OkHttpClient.Builder().build();
         Map<String,Object> map=new HashMap<>();
         map.put("userId",userId);
-       map.put("orderState","0");
+         map.put("orderState","45");
         FormBody.Builder bodyBuilder = new FormBody.Builder();
         bodyBuilder.add("data", CJSON.toJSONMap(map));
         Request request = builder.url(Urls.INDENT).post(bodyBuilder.build()).build();
