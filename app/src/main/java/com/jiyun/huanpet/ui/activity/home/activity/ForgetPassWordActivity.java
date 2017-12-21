@@ -38,6 +38,7 @@ public class ForgetPassWordActivity extends BaseActivity<ForgetPresenter> implem
         forget_phone = (EditText) findViewById(R.id.forget_phone);
         forget_word = (EditText) findViewById(R.id.forget_word);
         forget_password = (EditText) findViewById(R.id.forget_password);
+
     }
 
     @Override
