@@ -15,8 +15,8 @@ import com.jiyun.huanpet.view.ForgetView;
 
 /**
  * Created by lh on 2017/12/21.
+ * 忘记密码
  */
-
 public class ForgetPassWordActivity extends BaseActivity<ForgetPresenter> implements View.OnClickListener,ForgetView{
     private ImageView forget_back;
     private TextView forget_Submit;
