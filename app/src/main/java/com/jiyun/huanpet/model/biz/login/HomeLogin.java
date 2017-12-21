@@ -48,4 +48,22 @@ public class HomeLogin implements IHomeLogin {
         map.put("typeCode",typeCode);
      MyFactor.httpUtils().post(Urls.PETCODE,map,callback);
     }
+
+    @Override
+    public void register(String userPhone, String userName, String password, String userImage, String threeId, HttpCallback callback) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("userPhone",userPhone);
+        map.put("userName",userName);
+        map.put("password",password);
+        map.put("userImage",userImage);
+        map.put("threeId",threeId);
+        MyFactor.httpUtils().post(Urls.THIRDREGISTER,map,callback);
+    }
+
+    @Override
+    public void thirdLogin(String id, HttpCallback callback) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("threeId",id);
+        MyFactor.httpUtils().post(Urls.THIRDLOGIN,map,callback);
+    }
 }

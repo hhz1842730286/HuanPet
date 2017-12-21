@@ -15,4 +15,8 @@ public interface IHomeLogin<T> {
     <T>void petType(String beginIndex,String endIndex,String petTypeCode,HttpCallback<T> callback);
     //宠物类型筛选
     <T>void TypeCode(String beginIndex, String endIndex, String typeCode,HttpCallback<T> callback);
+    //第三方注册
+    <T>void register(String userPhone, String userName, String password, String userImage, String threeId,HttpCallback<T> callback);
+    //第三方登录
+    <T>void thirdLogin(String id,HttpCallback<T> callback);
 }

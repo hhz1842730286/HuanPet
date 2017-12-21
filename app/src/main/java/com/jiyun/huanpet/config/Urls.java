@@ -13,6 +13,10 @@ public class Urls {
     public static final String LOGIN = BASE_URL+"user/login.jhtml";
     //主页附近筛选
     public static final String FUJIN = BASE_URL+"users/getUsersInfoByVO.jhtml";
+    //第三方注册
+    public static final String THIRDREGISTER = BASE_URL+"user/register.jhtml";
+    //第三方登录
+    public static final String THIRDLOGIN = BASE_URL+"user/login.jhtml";
     //宠物类型
     public static final String PETCODE = BASE_URL+"petType/getPetTypesByVO.jhtml";
 //    // 数据请求URL

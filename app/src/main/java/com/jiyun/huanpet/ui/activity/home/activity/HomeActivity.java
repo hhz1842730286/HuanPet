@@ -22,6 +22,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jiyun.huanpet.R;
 import com.jiyun.huanpet.presenter.contract.HomeContract;
 import com.jiyun.huanpet.presenter.presenter.HomePresenterImpl;
@@ -38,6 +39,8 @@ import com.zaaach.citypicker.CityPickerActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by mengYao on 2017/12/8.
  */
@@ -46,7 +49,7 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
     private static final int REQUEST_CODE_PICK_CITY = 0;
     private RecyclerView home_recyclerview;
     private DrawerLayout drawer_layout;
-    private ImageView mMenuHead;
+    private CircleImageView mMenuHead;
     private ImageView mPersonalCenter;
     private TextView nearbytext;
     private RelativeLayout mMessageContainer;
@@ -105,7 +108,7 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
         drawer_layout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mPersonalCenter = (ImageView) findViewById(R.id.mPersonalCenter);
         mInfomation = (RelativeLayout) findViewById(R.id.mInfomation);
-        mMenuHead = (ImageView) findViewById(R.id.mMenuHead);
+        mMenuHead = (CircleImageView) findViewById(R.id.mMenuHead);
         mMenuName = (TextView) findViewById(R.id.mMenuName);
         mMenuPhone = (TextView) findViewById(R.id.mMenuPhone);
         mMessageContainer = (RelativeLayout) findViewById(R.id.mMessageContainer);
@@ -478,10 +481,16 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
         super.onResume();
         long userPhone = preferences.getLong("userPhone", 0);
         String userName = preferences.getString("userName", "");
+        String userImage = preferences.getString("userImage","");
         if(userPhone!=0&userName!=null){
+            if(userImage!=null){
+                Glide.with(mCon).load(userImage).into(mMenuHead);
+            }else{
+                mMenuHead.setImageResource(R.mipmap.ic_launcher_round);
+            }
             mNoLoginContainer.setVisibility(View.GONE);
             mInfomation.setVisibility(View.VISIBLE);
-            mMenuHead.setImageResource(R.mipmap.ic_launcher_round);
+
             mMenuName.setText(userName);
             mMenuPhone.setText(userPhone+"");
         }else{

@@ -21,9 +21,9 @@
         android:layout_height="70dp"
         android:id="@+id/mInfomation"
             >
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="60dp"
+            android:layout_height="50dp"
             android:id="@+id/mMenuHead"
             android:src="@mipmap/ic_launcher_round"
             android:layout_marginLeft="10dp"
