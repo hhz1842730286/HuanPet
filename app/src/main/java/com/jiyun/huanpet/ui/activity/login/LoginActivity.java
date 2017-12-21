@@ -18,6 +18,7 @@ import com.jiyun.huanpet.httputils.Md5Encrypt;
 import com.jiyun.huanpet.httputils.TokenUtil;
 import com.jiyun.huanpet.presenter.contract.LoginContract;
 import com.jiyun.huanpet.presenter.presenter.LoginPresenterImpl;
+import com.jiyun.huanpet.ui.activity.home.activity.ForgetPassWordActivity;
 import com.jiyun.huanpet.ui.activity.home.activity.HomeActivity;
 import com.jiyun.huanpet.ui.activity.home.bean.RegisterBean;
 import com.jiyun.huanpet.ui.base.BaseActivity;
@@ -44,6 +45,7 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements L
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
     private UMAuthListener authListener;
+    private TextView mForgetWord;
 
     @Override
     protected int getLayoutId() {
@@ -56,6 +58,7 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements L
         preferences = LoginActivity.this.getSharedPreferences("Login", MODE_PRIVATE);
         editor = preferences.edit();
         mPresenter = new LoginPresenterImpl(this);
+        mForgetWord = (TextView) findViewById(R.id.mForgetWord);
         mLoginPhoneEdit = (EditText) findViewById(R.id.mLoginPhoneEdit);
         mLoginPassWordEdit = (EditText) findViewById(R.id.mLoginPassWordEdit);
         mBtnLogin = (Button) findViewById(R.id.mBtnLogin);
@@ -115,6 +118,7 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements L
 
     @Override
     protected void init() {
+        mForgetWord.setOnClickListener(this);
         mQqLoginImg.setOnClickListener(this);
         mBtnLogin.setOnClickListener(this);
         mToRegister.setOnClickListener(this);
@@ -146,6 +150,10 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements L
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.mForgetWord:
+                 Intent in = new Intent(this, ForgetPassWordActivity.class);
+                  startActivity(in);
+                break;
             case R.id.mBtnLogin:
                 TokenUtil.setToken();
                 String user = mLoginPhoneEdit.getText().toString().trim();

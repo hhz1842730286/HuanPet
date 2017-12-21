@@ -55,7 +55,7 @@
         <activity android:name=".ui.activity.home.activity.UpdateQQActivity"></activity>
         <activity android:name=".ui.activity.home.activity.setactivity.ProductSuggestion"></activity>
          <activity android:name=".ui.activity.home.activity.DetailsOfAFosterTeacherActivity"></activity>
-
+         <activity android:name=".ui.activity.home.activity.ForgetPassWordActivity"></activity>
         <activity
             android:name="com.zaaach.citypicker.CityPickerActivity"
             android:theme="@style/CityPicker.NoActionBar"

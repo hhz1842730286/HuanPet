@@ -19,4 +19,6 @@ public interface IHomeLogin<T> {
     <T>void register(String userPhone, String userName, String password, String userImage, String threeId,HttpCallback<T> callback);
     //第三方登录
     <T>void thirdLogin(String id,HttpCallback<T> callback);
+    //修改密码
+    <T>void forgetPassword(String userPhone, String password,HttpCallback<T> callback);
 }
