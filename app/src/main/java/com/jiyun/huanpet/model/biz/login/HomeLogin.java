@@ -74,4 +74,11 @@ public class HomeLogin implements IHomeLogin {
         map.put("password",password);
         MyFactor.httpUtils().post(Urls.FORGET,map,callback);
     }
+
+    @Override
+    public void details(String userId, HttpCallback callback) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("userId",userId);
+        MyFactor.httpUtils().post(Urls.HOMEDETAILS,map,callback);
+    }
 }

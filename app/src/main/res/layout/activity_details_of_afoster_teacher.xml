@@ -22,7 +22,8 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/cp_ic_back"
+                    android:padding="10dp"
                     android:id="@+id/ign_out"
                     android:layout_marginLeft="15sp"/>
 

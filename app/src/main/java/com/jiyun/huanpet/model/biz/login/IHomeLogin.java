@@ -21,4 +21,6 @@ public interface IHomeLogin<T> {
     <T>void thirdLogin(String id,HttpCallback<T> callback);
     //修改密码
     <T>void forgetPassword(String userPhone, String password,HttpCallback<T> callback);
+    //首页详情(寄养师)
+    <T>void details(String userId,HttpCallback<T> callback);
 }

@@ -20,7 +20,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by lh on 2017/12/17.
  */
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> implements View.OnClickListener{
     private List<FuJinBean.DescBean> list;
     private Context mCon;
 
@@ -33,6 +33,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mCon).inflate(R.layout.homerecyclerview_item, parent, false);
         ViewHolder holder = new ViewHolder(view);
+        view.setOnClickListener(this);
         return holder;
     }
 
@@ -48,12 +49,15 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         holder.distance.setText("距"+distance+"米");
         holder.jiage.setText("¥"+price+"起");
         Glide.with(mCon).load(userImage).into(holder.circleImageView);
+        holder.itemView.setTag(position);
     }
 
     @Override
     public int getItemCount() {
         return list.size();
     }
+
+
 
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView name, jianjie, jiage,distance;
@@ -69,5 +73,19 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             distance = itemView.findViewById(R.id.distance);
 
         }
+    }
+    public interface Onclick{
+        void oncli(View view,int position);
+    }
+
+    public Onclick onclicklenter;
+    @Override
+    public void onClick(View v) {
+        if(onclicklenter!=null){
+            onclicklenter.oncli(v, (int) v.getTag());
+        }
+    }
+    public void setOnclicklenter(Onclick onclicklenter){
+        this.onclicklenter = onclicklenter;
     }
 }

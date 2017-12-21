@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.jiyun.huanpet.R;
@@ -136,6 +138,21 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
         home_recyclerview.addItemDecoration(new DividerItemDecoration(mCon,DividerItemDecoration.VERTICAL));
         home_recyclerview.setLayoutManager(new LinearLayoutManager(mCon));
         home_recyclerview.setAdapter(adapter);
+        adapter.setOnclicklenter(new HomeAdapter.Onclick() {
+            @Override
+            public void oncli(View view, int position) {
+                String usersId = beans.get(position).getUsersId();
+                String userName = preferences.getString("userName","");
+                if(userName!=null){
+                    Intent in = new Intent(mCon,HomeDetailsActivity.class);
+                    in.putExtra("usersId", usersId);
+                    startActivity(in);
+                }else{
+                    Toast.makeText(mCon, "请先登陆", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
 
         petList = new ArrayList<>();
         petAdapter = new HomePetAdapter(petList,mCon);
@@ -331,6 +348,15 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.mPersonalCenter:
+                if(drawer_layout.isDrawerOpen(Gravity.LEFT)){
+                    drawer_layout.closeDrawer(Gravity.LEFT);
+
+                }else {
+                    drawer_layout.openDrawer(Gravity.LEFT);
+                }
+
+                break;
             case R.id.Choosecity:
                 startActivityForResult(new Intent(mCon, CityPickerActivity.class),
                         REQUEST_CODE_PICK_CITY);
@@ -501,12 +527,14 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
 
     @Override
     public void fujinview(List<FuJinBean.DescBean> fuJinBean) {
+        beans.clear();
         beans.addAll(fuJinBean);
         adapter.notifyDataSetChanged();
     }
 
     @Override
     public void petType(List<PetTypeBean.DescBean> descBeans) {
+        beans.clear();
         petList.addAll(descBeans);
         petAdapter.notifyDataSetChanged();
     }

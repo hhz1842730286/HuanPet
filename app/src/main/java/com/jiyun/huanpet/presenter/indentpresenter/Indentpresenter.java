@@ -33,7 +33,7 @@ public class Indentpresenter implements IIndentpresenter.Presenter {
          iIndentModle.indent(userId, orderState, new HttpCallback<String>() {
              @Override
              public void success(String s) {
-                 Log.e("EEEEEEEEEEEEEE",s);
+
              }
 
              @Override
