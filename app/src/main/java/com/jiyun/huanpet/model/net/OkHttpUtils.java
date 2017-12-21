@@ -192,7 +192,7 @@ public class OkHttpUtils implements HttpRequest{
             throw new NullPointerException("请求参数不能为空");
         }
          bodyBuilder.add("data", CJSON.toJSONMap(params));
-        Request request = builder.url(url).post(bodyBuilder.build()).build();
+        Request request = builder.url(url).post(bodyBuilder.build()).tag(this).build();
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, final IOException e) {

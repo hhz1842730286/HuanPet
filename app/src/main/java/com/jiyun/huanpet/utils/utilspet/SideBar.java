@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 /**
- * 刘贵河
+ *
  */
 public class SideBar extends View {
 	// 触摸事件

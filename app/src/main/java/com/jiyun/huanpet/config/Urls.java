@@ -34,4 +34,6 @@ public class Urls {
     public static final String PETLIST=BASE_URL+"petInfo/getPetInfoByUserId.jhtml";
     // 我的订单接口
     public static final String INDENT=BASE_URL+"orderInfo/getOrderInfoByUserId.jhtml";
+    //订单详情
+    public static final String PARTICULARS=BASE_URL+"petInfo/getPetInfoByPetId.jhtml";
 }

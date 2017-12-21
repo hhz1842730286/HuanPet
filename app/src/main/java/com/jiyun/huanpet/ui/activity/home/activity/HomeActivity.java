@@ -399,8 +399,8 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
                 startActivity(new Intent(this, NewsActivity.class));
                 break;
             case R.id.mPetContainer:
-                startActivity(new Intent(this, PetActivity.class));
-
+//                startActivity(new Intent(this, PetActivity.class));
+                startActivity(new Intent(this,AddPetActivity.class));
                 break;
             case R.id.mOrderContainer:
                 startActivity(new Intent(this, OrderActivity.class));

@@ -33,6 +33,12 @@
         android:layout_height="2dp"
         android:background="#ECECEC"
         />
+    <ImageView
+        android:id="@+id/Pet_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/pet_empty"
+        />
     <ListView
         android:id="@+id/List_item"
         android:layout_width="match_parent"

@@ -7,5 +7,6 @@ import com.jiyun.huanpet.model.api.HttpCallback;
  */
 
 public interface IIndentModle {
-     <T>void indent(String userId, int orderState, HttpCallback<T> callbake);
+     <T>void indent(String userId, String orderState, HttpCallback<T> callbake);
+     <T> void particulars(HttpCallback<T> callback);
 }

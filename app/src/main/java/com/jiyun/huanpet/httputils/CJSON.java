@@ -119,7 +119,6 @@ public class CJSON extends JSON {
           toContent(USERID,userId);
         }
 		json.append(COMMA);
-
 		toContent(TokenUtil.TOKEN, TokenUtil.getToken());
 		json.append(END_BRACES + COMMA);
 		json.append(START_CONTENT + BODY + END_CONTENT);

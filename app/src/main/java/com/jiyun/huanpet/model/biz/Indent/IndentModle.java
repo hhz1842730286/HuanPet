@@ -14,10 +14,17 @@ import java.util.Map;
 public class IndentModle implements IIndentModle {
 
     @Override
-    public <T> void indent(String userId, int orderState, HttpCallback<T> callbake) {
+    public <T> void indent(String userId, String orderState, HttpCallback<T> callbake) {
         Map<String,Object> map=new HashMap<>();
         map.put("userId",userId);
         map.put("orderState",orderState);
         OkHttpUtils.getInstance().post(Urls.INDENT,map,callbake);
+    }
+
+    @Override
+    public <T> void particulars( HttpCallback<T> callback) {
+        Map<String,Object> map=new HashMap<>();
+        map.put("petCode","EE2DCEEBB1EF53EBEF46A92B2BA91B7D");
+        OkHttpUtils.getInstance().post(Urls.PARTICULARS,map,callback);
     }
 }

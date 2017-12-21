@@ -287,14 +287,16 @@
             android:text="免疫情况"
             android:textSize="20dp" />
 
-        <TextView
+        <EditText
+           android:id="@+id/Information"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="40dp"
             android:layout_marginTop="15dp"
             android:padding="10dp"
-            android:text="未完成的信息" />
+            android:background="@null"
+            android:text="未完善信息" />
 
         <ImageView
             android:layout_width="wrap_content"

@@ -12,15 +12,15 @@ import com.jiyun.huanpet.model.biz.Indent.IndentModle;
 
 public class Indentpresenter implements IIndentpresenter.Presenter {
    private IIndentModle iIndentModle;
-   private IIndentpresenter.View view;
-    public Indentpresenter( IIndentpresenter.View view) {
+   private IIndentpresenter.View indentview;
+    public Indentpresenter() {
         this.iIndentModle = new IndentModle();
-        this.view = view;
+
     }
 
     @Override
     public void attchTo(IIndentpresenter.View view) {
-
+        indentview=view;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class Indentpresenter implements IIndentpresenter.Presenter {
     }
 
     @Override
-    public void indent(String userId, int orderState) {
+    public void indent(String userId, String orderState) {
          iIndentModle.indent(userId, orderState, new HttpCallback<String>() {
              @Override
              public void success(String s) {
@@ -41,5 +41,20 @@ public class Indentpresenter implements IIndentpresenter.Presenter {
 
              }
          });
+    }
+
+    @Override
+    public void particulars() {
+        iIndentModle.particulars( new HttpCallback<Object>() {
+            @Override
+            public void success(Object o) {
+                Log.e("33333333333333",o.toString());
+            }
+
+            @Override
+            public void error(String error) {
+
+            }
+        });
     }
 }

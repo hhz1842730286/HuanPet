@@ -12,6 +12,7 @@ public interface IIndentpresenter {
 
     }
     interface Presenter extends BasePresenter<View> {
-       void indent(String userId, int orderState);
+       void indent(String userId, String  orderState);
+       void particulars();
     }
 }

@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -25,12 +26,11 @@ import com.codbking.widget.DatePickDialog;
 import com.codbking.widget.OnSureLisener;
 import com.codbking.widget.bean.DateType;
 import com.jiyun.huanpet.R;
-import com.jiyun.huanpet.config.Urls;
-import com.jiyun.huanpet.httputils.CJSON;
 import com.jiyun.huanpet.presenter.petpresenter.Petpresenter;
 import com.jiyun.huanpet.ui.activity.home.bean.Petadd;
 import com.jiyun.huanpet.ui.base.BaseActivity;
 import com.jiyun.huanpet.utils.utilspet.Formation;
+import com.jiyun.huanpet.utils.utilspet.UploadUtil;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -42,14 +42,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
 import static com.jiyun.huanpet.constants.Constants.REQUESTCODE;
+
 //添加宠物
 public class AddPetActivity extends BaseActivity<Petpresenter> implements View.OnClickListener {
     private ImageView Back_gray;
@@ -61,15 +55,43 @@ public class AddPetActivity extends BaseActivity<Petpresenter> implements View.O
     private TextView cancel;
     private ImageView Head_portrait_imager;
     private TextView Save;
-    private RelativeLayout Head_portrait,Nickname,Of_birth,Weight,Whether;
+    private RelativeLayout Head_portrait, Nickname, Of_birth, Weight, Whether;
     private static final int CAMERA_CODE = 1;
     private static final int GALLERY_CODE = 2;
     private static final int CROP_CODE = 3;
-    private TextView Nick_Name,Date_of_birth,Weight_figure,Sterilization;
+    private TextView Nick_Name, Date_of_birth, Weight_figure, Sterilization;
     private TextView yes;
     private TextView no;
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
+    private EditText Information,Edit_text;
+    // 得到昵称的返回值
+    private String resultNick;
+    // 得到体重的返回值
+    private String resultWeight;
+    // 宠物类型
+    private String petType;
+    // 出生日期
+    private String petDate;
+    // 是否绝育
+    private String yesOrNo;
+    // 宠物简介
+    private String petInfo;
+    // 免疫信息
+    private boolean isImmune = false;
+    // 是否绝育
+    private boolean isSterilization = false;
+    // 病毒类型
+    private String str = "已免疫";
+    // 图片路径
+    private String imgPath;
+
+    private Map<String, File> iconMap=new HashMap<>();
+
+    private int isSex = 2;
+
+    private String typeCode;
+    private Map<String, Object> map = new HashMap<>();
 
     @Override
     protected int getLayoutId() {
@@ -80,127 +102,272 @@ public class AddPetActivity extends BaseActivity<Petpresenter> implements View.O
     protected void findViewById() {
         Back_gray = (ImageView) findViewById(R.id.Back_gray);
         Back_gray.setOnClickListener(this);
-        Save= (TextView) findViewById(R.id.Save);
+        Save = (TextView) findViewById(R.id.Save);
         Save.setOnClickListener(this);
-        Head_portrait= (RelativeLayout) findViewById(R.id.Head_portrait);
+        Head_portrait = (RelativeLayout) findViewById(R.id.Head_portrait);
         Head_portrait.setOnClickListener(this);
         Pet_Type = (RelativeLayout) findViewById(R.id.Pet_Type);
         Pet_Type.setOnClickListener(this);
         immune_state = (RelativeLayout) findViewById(R.id.immune_state);
         immune_state.setOnClickListener(this);
-        Head_portrait_imager= (ImageView) findViewById(R.id.Head_portrait_imager);
+        Head_portrait_imager = (ImageView) findViewById(R.id.Head_portrait_imager);
 
-        Nickname= (RelativeLayout) findViewById(R.id.Nickname);
+        Nickname = (RelativeLayout) findViewById(R.id.Nickname);
         Nickname.setOnClickListener(this);
-        Nick_Name= (TextView) findViewById(R.id.Nick_Name);
-        Of_birth= (RelativeLayout) findViewById(R.id.Of_birth);
+        Nick_Name = (TextView) findViewById(R.id.Nick_Name);
+        Of_birth = (RelativeLayout) findViewById(R.id.Of_birth);
         Of_birth.setOnClickListener(this);
-        Date_of_birth= (TextView) findViewById(R.id.Date_of_birth);
-        Weight= (RelativeLayout) findViewById(R.id.Weight);
+        Date_of_birth = (TextView) findViewById(R.id.Date_of_birth);
+        Weight = (RelativeLayout) findViewById(R.id.Weight);
         Weight.setOnClickListener(this);
-        Weight_figure= (TextView) findViewById(R.id.Weight_figure);
-        Whether= (RelativeLayout) findViewById(R.id.Whether);
+        Weight_figure = (TextView) findViewById(R.id.Weight_figure);
+        Whether = (RelativeLayout) findViewById(R.id.Whether);
         Whether.setOnClickListener(this);
-        Sterilization= (TextView) findViewById(R.id.Sterilization);
+        Sterilization = (TextView) findViewById(R.id.Sterilization);
+        Information= (EditText) findViewById(R.id.Information);
+        Edit_text= (EditText) findViewById(R.id.Edit_text);
     }
 
     @Override
     protected void init() {
+//        preferences =AddPetActivity.this.getSharedPreferences("Login", MODE_PRIVATE);
+//        String userId = preferences.getString("userId", null);
+//        Request.Builder builder = new Request.Builder();
+//        OkHttpClient build = new OkHttpClient.Builder().build();
+//        Petadd pet = new Petadd();
+//        pet.setPetName(Nick_Name.toString());
+//        pet.setPetType("Int(否)");
+//        pet.setIsSterilization(1);
+//        pet.setPetSex(1);
+//        pet.setPetBirthTime(Date_of_birth.toString());
+//        pet.setCreateTime((new SimpleDateFormat("yyyy-MM-dd")).format(new Date()));
+//        pet.setPetWeight(Double.parseDouble("2.5"));
+//        pet.setPetInfo("西伯利亚雪橇犬");
+//        pet.setPetTypeName("哈士奇");
+//        pet.setIsimmune(0);
+//        pet.setUserId(userId);
+//        pet.setUserName("xxxx");
+//        AddPetActivity.this.map.put("petInfo-"+userId,pet);
+//        FormBody.Builder bodyBuilder = new FormBody.Builder();
+//        bodyBuilder.add("data", CJSON.toJSONMap(map));
+//        Request request = builder.url(Urls.PETADD).post(bodyBuilder.build()).build();
+//        Call call = build.newCall(request);
+//        call.enqueue(new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                Log.e("-----------",e.getMessage());
+//            }
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                String string = response.body().string();
+//                Log.e("tttttttttttt",string);
+//            }
+//        });
 
+//        (new Thread(new Runnable() {
+//            public void run() {
+//                String string = UploadUtil.uploadFile(AddPetActivity.this.iconMap, Urls.PETADD, AddPetActivity.this.map);
+//                Log.i("TAG", string);
+//                AddPetActivity.this.runOnUiThread(new Runnable() {
+//                    public void run() {
+//                        Toast.makeText(AddPetActivity.this, "添加成功",Toast.LENGTH_LONG).show();
+//                    }
+//                });
+//                AddPetActivity.this.finish();
+//            }
+//        })).start();
+
+
+
+    }
+
+
+    private boolean noNull() {
+        petInfo = Edit_text.getText().toString().trim();
+        String petImmune = Information.getText().toString().trim();
+        if (petImmune.equals("未完善信息")) {
+            isImmune = false;
+        } else {
+            isImmune = true;
+
+        }
+        if (resultNick == null || resultNick.isEmpty()) {
+            Toast.makeText(this, "请填写宠物昵称", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (resultWeight == null || resultWeight.isEmpty()) {
+            Toast.makeText(this, "请填写宠物体重", Toast.LENGTH_SHORT).show();
+
+            return false;
+        }
+        if (petType == null || petType.isEmpty()) {
+            Toast.makeText(this, "请填写宠物类型", Toast.LENGTH_SHORT).show();
+
+            return false;
+        }
+        if (petDate == null || petDate.isEmpty()) {
+            Toast.makeText(this, "请填写宠物生日", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (yesOrNo == null || yesOrNo.isEmpty()) {
+            Toast.makeText(this, "请填写宠物是否绝育", Toast.LENGTH_SHORT).show();
+
+            return false;
+        }
+        if (petInfo == null || petInfo.isEmpty()) {
+            Toast.makeText(this, "请填写宠物简介", Toast.LENGTH_SHORT).show();
+
+            return false;
+        }
+        if (isSex == 2) {
+            Toast.makeText(this, "请填写宠物简介", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
     @Override
     protected void loadData() {
+        preferences =AddPetActivity.this.getSharedPreferences("Login", MODE_PRIVATE);
+        String userId = preferences.getString("userId", null);
+        if (noNull()) {
+            Petadd pet = new Petadd();
+            pet.setPetName(resultNick);
+            pet.setPetType(typeCode);
+            Log.i("TAG", typeCode + "code3");
+            pet.setIsSterilization(isSterilization ? 1 : 2);
+            pet.setPetSex(isSex);
+            pet.setPetBirthTime(petDate);
+            pet.setCreateTime(new SimpleDateFormat("yyyy-MM-dd")
+                    .format(new Date()));
+            pet.setPetWeight(Double.parseDouble(resultWeight));
+            pet.setPetInfo(petInfo);
+            pet.setPetTypeName(petType);
+            pet.setIsimmune(isImmune ? 1 : 0);
+            pet.setUserId(userId);
+            pet.setUserName("xxxx");
+            map.put("petInfo-" + userId, pet);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String string = UploadUtil.uploadFile(iconMap,
+                            "http://123.56.150.230:8885/petInfo/savePetInfo.jhtml", map);
+                    Log.i("TAG", string);
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast.makeText(AddPetActivity.this, "添加成功",
+                                    Toast.LENGTH_LONG).show();
+
+                        }
+                    });
+                    finish();
+                }
+            }).start();
+        }
+    }
+
+
+//        @Override
+//        protected void loadData () {
 //        preferences =AddPetActivity.this.getSharedPreferences("Login", MODE_PRIVATE);
 //        editor = preferences.edit();
 //        String userId = preferences.getString("userId", null);
 //        editor.commit();
-        Request.Builder builder = new Request.Builder();
-        OkHttpClient build = new OkHttpClient.Builder().build();
-        Map<String,Object> mapq=new HashMap<>();
-        Petadd petadd=new Petadd();
-        mapq.put("petName",petadd.getPetName());
-        mapq.put("PetType",petadd.getPetType());
-        mapq.put("userName",petadd.getUserName());
-        mapq.put("CreateTime",petadd.getCreateTime());
-        mapq.put("petBirthTime",petadd.getPetBirthTime());
-        mapq.put("petInfo",petadd.getPetInfo());
-        mapq.put("petTypeName",petadd.getPetTypeName());
-        mapq.put("isSterilization",petadd.getIsSterilization());
-        mapq.put("petWeight",petadd.getPetWeight());
-        mapq.put("isimmune",petadd.getIsimmune());
-        mapq.put("userId",petadd.getUserId());
-        FormBody.Builder bodyBuilder = new FormBody.Builder();
-        bodyBuilder.add("data", CJSON.toJSONMap(mapq));
-        Request request = builder.url(Urls.INDENT).post(bodyBuilder.build()).build();
-        Call call = build.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.e("-----------",e.getMessage());
+//        Request.Builder builder = new Request.Builder();
+//        OkHttpClient build = new OkHttpClient.Builder().build();
+//        Map<String,Object> mapq=new HashMap<>();
+//        Petadd petadd=new Petadd();
+//        petadd.setPetName("多个省份");
+//            //类型typecode
+//        petadd.setPetType();
+//            //是否绝育
+//        petadd.setIsSterilization(1);
+//        petadd.setPetSex(1);
+//        petadd.setPetBirthTime("2017-12-19");
+//        petadd.setCreateTime(new SimpleDateFormat("yyyy-MM-dd")
+//                .format(new Date()));
+//        petadd.setPetWeight(Double.parseDouble());
+//        petadd.setPetInfo();
+//        petadd.setPetTypeName();
+//        petadd.setIsimmune(0);
+//        petadd.setUserId();
+//        petadd.setUserName();
+//        FormBody.Builder bodyBuilder = new FormBody.Builder();
+//        bodyBuilder.add("data", CJSON.toJSONMap(mapq));
+//        Request request = builder.url(Urls.INDENT).post(bodyBuilder.build()).build();
+//        Call call = build.newCall(request);
+//        call.enqueue(new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                Log.e("-----------",e.getMessage());
+//            }
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                String string = response.body().string();
+//                Log.e("tttttttttttt",string);
+//            }
+//        });
+//        }
+
+
+
+
+        @Override
+        public void onClick (View v){
+            switch (v.getId()) {
+                case R.id.Save:
+                    startActivity(new Intent(AddPetActivity.this, PetActivity.class));
+                    break;
+                case R.id.Head_portrait:
+                    showopenPop();
+                    break;
+                case R.id.Nickname:
+                    Intent intent = new Intent(AddPetActivity.this, UpdateUserNameActivity.class);
+                    startActivityForResult(intent, 1000);
+                    break;
+                case R.id.Pet_Type:
+                    startActivityForResult(new Intent(this, PetTypeActivity.class), REQUESTCODE);
+                    break;
+                case R.id.Of_birth:
+                    showbirthPopup();
+                    break;
+                case R.id.Weight:
+                    Intent intent2 = new Intent(AddPetActivity.this, UpdateUserNameActivity.class);
+                    startActivityForResult(intent2, 3000);
+                    break;
+                case R.id.immune_state:
+                    startActivity(new Intent(this, PetMianYiActivity.class));
+                    break;
+                case R.id.Back_gray:
+                    finish();
+                    break;
+                case R.id.Photograph:
+                    chooseFromCamera();
+                    break;
+                case R.id.photo_album:
+                    chooseFromGallery();
+                    break;
+                case R.id.Cancel:
+                    popupWindow.dismiss();
+                    break;
+                case R.id.Whether:
+                    showPopWindow();
+                    break;
+                case R.id.Yes:
+                    String trim = yes.getText().toString().trim();
+                    Sterilization.setText(trim);
+                    popupWindow.dismiss();
+                    break;
+                case R.id.No:
+                    String trim1 = no.getText().toString().trim();
+                    Sterilization.setText(trim1);
+                    popupWindow.dismiss();
+                    break;
+
             }
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                String string = response.body().string();
-                Log.e("tttttttttttt",string);
-            }
-        });
-    }
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.Save:
-                startActivity(new Intent(AddPetActivity.this,PetActivity.class));
-                break;
-            case R.id.Head_portrait:
-                showopenPop();
-                break;
-            case R.id.Nickname:
-                Intent intent=new Intent(AddPetActivity.this,UpdateUserNameActivity.class);
-                startActivityForResult(intent,1000);
-                break;
-            case R.id.Pet_Type:
-                startActivityForResult(new Intent(this, PetTypeActivity.class), REQUESTCODE);
-                break;
-            case R.id.Of_birth:
-                showbirthPopup();
-                break;
-            case R.id.Weight:
-                Intent intent2=new Intent(AddPetActivity.this,UpdateUserNameActivity.class);
-                startActivityForResult(intent2,3000);
-                break;
-            case R.id.immune_state:
-                startActivity(new Intent(this, PetMianYiActivity.class));
-                break;
-            case R.id.Back_gray:
-                finish();
-                break;
-            case R.id.Photograph:
-                chooseFromCamera();
-                break;
-            case R.id.photo_album:
-                chooseFromGallery();
-                break;
-            case R.id.Cancel:
-                popupWindow.dismiss();
-                break;
-            case R.id.Whether:
-                showPopWindow();
-                break;
-            case R.id.Yes:
-                String trim = yes.getText().toString().trim();
-                Sterilization.setText(trim);
-                popupWindow.dismiss();
-                break;
-            case R.id.No:
-                String trim1 = no.getText().toString().trim();
-                Sterilization.setText(trim1);
-                popupWindow.dismiss();
-                break;
 
         }
 
-    }
     public void showbirthPopup() {
         DatePickDialog dialog = new DatePickDialog(AddPetActivity.this);
         //设置上下年分限制
@@ -224,7 +391,8 @@ public class AddPetActivity extends BaseActivity<Petpresenter> implements View.O
         });
         dialog.show();
     }
-    public void showPopWindow(){
+
+    public void showPopWindow() {
         popupWindow = new PopupWindow(this);
         popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -232,9 +400,9 @@ public class AddPetActivity extends BaseActivity<Petpresenter> implements View.O
         popupWindow.setFocusable(true);
         popupWindow.setTouchable(true);
         View inflate = LayoutInflater.from(this).inflate(R.layout.activity_whetherpopupwindow, null);
-        yes= inflate.findViewById(R.id.Yes);
+        yes = inflate.findViewById(R.id.Yes);
         yes.setOnClickListener(this);
-        no=inflate.findViewById(R.id.No);
+        no = inflate.findViewById(R.id.No);
         no.setOnClickListener(this);
         popupWindow.setContentView(inflate);
         popupWindow.setBackgroundDrawable(new ColorDrawable(15189737));
@@ -252,6 +420,7 @@ public class AddPetActivity extends BaseActivity<Petpresenter> implements View.O
             }
         });
     }
+
     public void showopenPop() {
         popupWindow = new PopupWindow(this);
         popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
@@ -260,11 +429,11 @@ public class AddPetActivity extends BaseActivity<Petpresenter> implements View.O
         popupWindow.setFocusable(true);
         popupWindow.setTouchable(true);
         View inflate = LayoutInflater.from(this).inflate(R.layout.popup_activity, null);
-        photograph=inflate.findViewById(R.id.Photograph);
+        photograph = inflate.findViewById(R.id.Photograph);
         photograph.setOnClickListener(this);
-        photo_album=inflate.findViewById(R.id.photo_album);
+        photo_album = inflate.findViewById(R.id.photo_album);
         photo_album.setOnClickListener(this);
-        cancel=inflate.findViewById(R.id.Cancel);
+        cancel = inflate.findViewById(R.id.Cancel);
         cancel.setOnClickListener(this);
         popupWindow.setContentView(inflate);
         popupWindow.setBackgroundDrawable(new ColorDrawable(15189737));
@@ -282,6 +451,7 @@ public class AddPetActivity extends BaseActivity<Petpresenter> implements View.O
             }
         });
     }
+
     private void chooseFromCamera() {
         //构建隐式Intent
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -312,7 +482,7 @@ public class AddPetActivity extends BaseActivity<Petpresenter> implements View.O
                 }
                 break;
             case 3000:
-                if(requestCode==3000&&resultCode==2000) {
+                if (requestCode == 3000 && resultCode == 2000) {
                     String date = data.getStringExtra("date");
                     Weight_figure.setText(date);
                 }
@@ -366,10 +536,11 @@ public class AddPetActivity extends BaseActivity<Petpresenter> implements View.O
 
     /**
      * 将content类型的Uri转化为文件类型的Uri
+     *
      * @param uri
      * @return
      */
-    private Uri convertUri(Uri uri){
+    private Uri convertUri(Uri uri) {
         InputStream is;
         try {
             //Uri ----> InputStream
@@ -390,6 +561,7 @@ public class AddPetActivity extends BaseActivity<Petpresenter> implements View.O
 
     /**
      * 将Bitmap写入SD卡中的一个文件中,并返回写入文件的Uri
+     *
      * @param bm
      * @param dirPath
      * @return
@@ -397,7 +569,7 @@ public class AddPetActivity extends BaseActivity<Petpresenter> implements View.O
     private Uri saveBitmap(Bitmap bm, String dirPath) {
         //新建文件夹用于存放裁剪后的图片
         File tmpDir = new File(Environment.getExternalStorageDirectory() + "/" + dirPath);
-        if (!tmpDir.exists()){
+        if (!tmpDir.exists()) {
             tmpDir.mkdir();
         }
 
@@ -423,11 +595,13 @@ public class AddPetActivity extends BaseActivity<Petpresenter> implements View.O
         }
 
     }
+
     /**
      * 通过Uri传递图像信息以供裁剪
+     *
      * @param uri
      */
-    private void startImageZoom(Uri uri){
+    private void startImageZoom(Uri uri) {
         //构建隐式Intent来启动裁剪程序
         Intent intent = new Intent("com.android.camera.action.CROP");
         //设置数据uri和类型为图片类型
@@ -446,4 +620,9 @@ public class AddPetActivity extends BaseActivity<Petpresenter> implements View.O
     }
 
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) and run LayoutCreator again
+    }
 }

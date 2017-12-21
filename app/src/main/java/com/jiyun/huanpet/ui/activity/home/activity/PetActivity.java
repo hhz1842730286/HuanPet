@@ -2,6 +2,7 @@ package com.jiyun.huanpet.ui.activity.home.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -16,15 +17,16 @@ import com.jiyun.huanpet.ui.base.BaseActivity;
 
 import java.util.ArrayList;
 
-public class PetActivity extends BaseActivity<Petpresenter> implements View.OnClickListener,IPetContract.View {
+public class PetActivity extends BaseActivity<Petpresenter> implements View.OnClickListener, IPetContract.View {
 
     private ImageView Go_back;
     private ListView List_item;
     private RelativeLayout MyPet;
     private PetListAdapter listAdapter;
-    private ArrayList<Petadd> mArr=new ArrayList<>();
+    private ArrayList<Petadd> mArr = new ArrayList<>();
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
+    private ImageView Pet_empty;
 
     @Override
     protected int getLayoutId() {
@@ -41,15 +43,16 @@ public class PetActivity extends BaseActivity<Petpresenter> implements View.OnCl
         Go_back = (ImageView) findViewById(R.id.Go_back);
         Go_back.setOnClickListener(this);
         List_item = (ListView) findViewById(R.id.List_item);
-        MyPet= (RelativeLayout) findViewById(R.id.MyPet);
+        MyPet = (RelativeLayout) findViewById(R.id.MyPet);
         MyPet.setOnClickListener(this);
-        listAdapter=new PetListAdapter(PetActivity.this,mArr);
+        Pet_empty= (ImageView) findViewById(R.id.Pet_empty);
+        listAdapter = new PetListAdapter(PetActivity.this, mArr);
         List_item.setAdapter(listAdapter);
     }
 
     @Override
     protected void loadData() {
-        preferences =PetActivity.this.getSharedPreferences("Login", MODE_PRIVATE);
+        preferences = PetActivity.this.getSharedPreferences("Login", MODE_PRIVATE);
         editor = preferences.edit();
         String userId = preferences.getString("userId", null);
         editor.commit();
@@ -63,7 +66,8 @@ public class PetActivity extends BaseActivity<Petpresenter> implements View.OnCl
                 finish();
                 break;
             case R.id.MyPet:
-                startActivity(new Intent(PetActivity.this,AddPetActivity.class));
+                Pet_empty.setVisibility(View.GONE);
+                startActivity(new Intent(PetActivity.this, AddPetActivity.class));
                 break;
         }
     }
@@ -81,5 +85,11 @@ public class PetActivity extends BaseActivity<Petpresenter> implements View.OnCl
     @Override
     public void closeProgress() {
 
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) and run LayoutCreator again
     }
 }

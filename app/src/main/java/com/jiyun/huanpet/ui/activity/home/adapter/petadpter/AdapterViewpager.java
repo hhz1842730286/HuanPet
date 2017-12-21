@@ -12,10 +12,11 @@ import java.util.ArrayList;
 
 public class AdapterViewpager extends FragmentPagerAdapter {
     private ArrayList<Fragment> fragments;
-
-    public AdapterViewpager(FragmentManager fm,ArrayList<Fragment> fragments) {
+    private ArrayList<String> mTilte;
+    public AdapterViewpager(FragmentManager fm,ArrayList<Fragment> fragments,ArrayList<String> mTilte) {
         super(fm);
         this.fragments=fragments;
+        this.mTilte=mTilte;
     }
 
     @Override
@@ -26,5 +27,10 @@ public class AdapterViewpager extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return fragments.size();
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return mTilte.get(position);
     }
 }

@@ -2,15 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EFF2F5"
+    android:background="#FFFFFF"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F9F9F9">
+        android:background="#F7F7F7">
 
         <ImageView
+            android:id="@+id/Graybak"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="20dp"
@@ -55,12 +56,11 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:background="#D6D6D6" />
 
     <RelativeLayout
@@ -73,10 +73,12 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="订单编号:"
+            android:textColor="#616361"
             android:textSize="20dp"
-            android:textStyle="bold" />
+            />
 
         <TextView
+            android:id="@+id/Number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -86,7 +88,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:background="#C2C2C2" />
 
     <RelativeLayout
@@ -99,10 +101,12 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="寄养宠物:"
+            android:textColor="#616361"
             android:textSize="20dp"
-            android:textStyle="bold" />
+            />
 
-        <android.support.v4.widget.CircleImageView
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/Pet_head_portrait"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
@@ -110,14 +114,17 @@
             android:src="@mipmap/ic_launcher" />
 
         <TextView
+            android:id="@+id/Pet_Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="70dp"
             android:layout_marginTop="50dp"
+            android:textColor="#ADACAD"
             android:text="  llllll  "
-            android:textStyle="bold" />
+            />
 
         <ImageView
+            android:id="@+id/Pet_sex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="120dp"
@@ -125,10 +132,12 @@
             android:src="@mipmap/male" />
 
         <TextView
+            android:id="@+id/Pet_condition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="80dp"
             android:layout_marginTop="70dp"
+            android:textColor="#E3E2E3"
             android:text="dddddddddddd  " />
     </RelativeLayout>
 
@@ -148,14 +157,16 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="寄养时间:"
+            android:textColor="#616361"
             android:textSize="20dp"
-            android:textStyle="bold" />
+           />
 
         <TextView
+            android:id="@+id/Time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2016-03-05至2016-03-08"
-            android:textSize="15dp" />
+            android:textSize="17dp" />
     </LinearLayout>
 
     <View
@@ -175,6 +186,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
+            android:textColor="#E3E2E3"
             android:text="宠物"
             android:textSize="20dp" />
 
@@ -183,6 +195,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
+            android:textColor="#E3E2E3"
             android:text="元/晚"
             android:textSize="20dp" />
 
@@ -191,6 +204,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
+            android:textColor="#E3E2E3"
             android:text="晚"
             android:textSize="20dp" />
 
@@ -199,6 +213,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
+            android:textColor="#E3E2E3"
             android:text="金额"
             android:textSize="20dp" />
     </LinearLayout>
@@ -257,6 +272,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fff"
+        android:textSize="18dp"
+        android:textColor="#6A6C6A"
         android:padding="10dp"
         android:text="其它服务" />
 
@@ -277,6 +294,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
+            android:textColor="#D8D7D8"
             android:text="项目"
             android:textSize="20dp" />
 
@@ -285,6 +303,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
+            android:textColor="#D8D7D8"
             android:text="单价"
             android:textSize="20dp" />
 
@@ -293,6 +312,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
+            android:textColor="#D8D7D8"
             android:text="数量"
             android:textSize="20dp" />
 
@@ -301,6 +321,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
+            android:textColor="#D8D7D8"
             android:text="金额"
             android:textSize="20dp" />
     </LinearLayout>
@@ -352,20 +373,24 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="#EDEDF5"
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fff">
 
-        <android.support.v4.widget.CircleImageView
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/User_head_portrait"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="20dp"
             android:src="@mipmap/ic_launcher" />
 
         <TextView
+            android:id="@+id/User_tilte"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="70dp"
@@ -375,7 +400,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/Content"
+            android:id="@+id/User_Content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="70dp"
@@ -409,6 +434,7 @@
         android:orientation="horizontal">
 
         <TextView
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
@@ -416,6 +442,7 @@
             android:textSize="20dp" />
 
         <TextView
+            android:id="@+id/Indent_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
@@ -429,6 +456,7 @@
         android:orientation="horizontal">
 
         <TextView
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
@@ -436,6 +464,7 @@
             android:textSize="20dp" />
 
         <TextView
+            android:id="@+id/Indent_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
@@ -457,6 +486,7 @@
             android:textSize="20dp" />
 
         <TextView
+            android:id="@+id/Handle_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
