@@ -28,7 +28,7 @@ public class HomeDetailsActivity extends BaseActivity<DetailsPresenter> implemen
 
     private String usersId;
     private DetailsPresenter detailsPresenter;
-     private TextView number,name,daPrice,zhongPrice,catPrice,daTake_a_showerPrice,zhong_Take_a_showerPrice,Shuttle_cat_Price,Study,addresss,briefIntroduction;
+     private TextView number,name,daPrice,zhongPrice,catPrice,daTake_a_showerPrice,zhong_Take_a_showerPrice,Shuttle_cat_Price,Study,addresss,briefIntroduction,textView16;
      private LinearLayout Contact_him;
      private Context mCon;
 
@@ -49,6 +49,8 @@ public class HomeDetailsActivity extends BaseActivity<DetailsPresenter> implemen
         name = (TextView) findViewById(R.id.name);
         daPrice = (TextView) findViewById(R.id.daPrice);
         zhongPrice = (TextView) findViewById(R.id.zhongPrice);
+        textView16 = (TextView) findViewById(R.id.textView16);
+        textView16.setOnClickListener(this);
         catPrice = (TextView) findViewById(R.id.catPrice);
         daTake_a_showerPrice = (TextView) findViewById(R.id.daTake_a_showerPrice);
         zhong_Take_a_showerPrice = (TextView) findViewById(R.id.zhong_Take_a_showerPrice);
@@ -111,7 +113,7 @@ public class HomeDetailsActivity extends BaseActivity<DetailsPresenter> implemen
         String intro = desc.getFosterInfo().getIntro();
         briefIntroduction.setText(intro);
 
-        String userName = desc.getFosterInfo().getUserName();
+        String userName = desc.getFosterInfo().getFamily();
         name.setText(userName);
     }
 
@@ -123,10 +125,11 @@ public class HomeDetailsActivity extends BaseActivity<DetailsPresenter> implemen
                 in.putExtra(EaseConstant.EXTRA_CHAT_TYPE, EMMessage.ChatType.Chat);
                 in.putExtra(EaseConstant.EXTRA_USER_ID,usersId);
                 startActivity(in);
-
-
-
                 break;
+              case R.id.textView16:
+
+                  break;
+
         }
     }
 }

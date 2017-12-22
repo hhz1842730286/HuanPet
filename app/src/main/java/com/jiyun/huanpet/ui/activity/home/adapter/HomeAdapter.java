@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.jiyun.huanpet.R;
 import com.jiyun.huanpet.ui.activity.home.bean.FuJinBean;

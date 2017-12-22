@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hyphenate.chat.EMClient;
 import com.jiyun.huanpet.R;
 import com.jiyun.huanpet.presenter.presenter.HomePresenterImpl;
 import com.jiyun.huanpet.ui.activity.home.activity.setactivity.ProductSuggestion;
@@ -144,6 +145,7 @@ public class SettingActivity extends BaseActivity<HomePresenterImpl> implements 
             case R.id.Quit:
                 edit.clear();
                 edit.commit();
+                EMClient.getInstance().logout(true);
                 finish();
                 break;
         }
