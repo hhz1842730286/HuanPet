@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F1F5"
+    android:orientation="vertical"
+    tools:context="com.jiyun.huanpet.ui.activity.home.activity.ReservationsActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#FFFFFF">
+                <ImageView
+                    android:id="@+id/tuichu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:src="@mipmap/back_gray" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="预约寄养"
+                    android:textColor="#666565"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30sp"
+                android:layout_marginLeft="15sp"
+                android:gravity="center_vertical"
+                android:text="寄养时间"
+                android:textSize="16sp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80sp"
+                android:background="#FFFFFF">
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="47dp"
+                    android:layout_marginStart="47dp"
+                    android:layout_marginTop="17dp"
+                    android:text="开始时间"
+                    android:textSize="17sp" />
+                <TextView
+                    android:id="@+id/start_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/textView18"
+                    android:layout_alignStart="@+id/textView18"
+                    android:layout_below="@+id/textView18"
+                    android:layout_marginTop="11dp"
+                    android:text="时间"
+                    android:textSize="17sp" />
+                <TextView
+                    android:layout_width="60sp"
+                    android:layout_height="60sp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/time_foster"
+                    android:gravity="center"
+                    android:text="4晚"
+                    android:textSize="17sp" />
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/textView18"
+                    android:layout_alignBottom="@+id/textView18"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="43dp"
+                    android:layout_marginRight="43dp"
+                    android:text="接回时间"
+                    android:textSize="17sp" />
+                <TextView
+                    android:id="@+id/End_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/start_time"
+                    android:layout_alignBottom="@+id/start_time"
+                    android:layout_alignLeft="@+id/textView21"
+                    android:layout_alignStart="@+id/textView21"
+                    android:text="时间"
+                    android:textSize="17sp" />
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30sp"
+                android:layout_marginLeft="15sp"
+                android:gravity="center_vertical"
+                android:text="寄养的宠物(最多添加三只宠物)"
+                android:textSize="16sp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/circleImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="10sp"
+                    android:layout_marginLeft="26dp"
+                    android:layout_marginStart="26dp"
+                    android:layout_marginTop="10sp"
+                    android:src="@mipmap/ic_launcher" />
+                <TextView
+                    android:id="@+id/Pet_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/circleImageView"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_toEndOf="@+id/circleImageView"
+                    android:layout_toRightOf="@+id/circleImageView"
+                    android:text="宠物名字" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/Pet_name"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_toEndOf="@+id/Pet_name"
+                    android:layout_toRightOf="@+id/Pet_name"
+                    android:src="@mipmap/male" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/circleImageView"
+                    android:layout_alignLeft="@+id/Pet_name"
+                    android:layout_alignStart="@+id/Pet_name"
+                    android:text="介绍介绍微加幸福" />
+                <ImageView
+                    android:id="@+id/delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="22dp"
+                    android:layout_marginRight="22dp"
+                    android:src="@mipmap/delete_pet" />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1sp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF">
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15sp"
+                    android:layout_marginLeft="15sp"
+                    android:layout_marginTop="15sp"
+                    android:text="寄养天数"
+                    android:textSize="17sp" />
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/textView23"
+                    android:layout_alignBottom="@+id/textView23"
+                    android:layout_centerHorizontal="true"
+                    android:text="4天"
+                    android:textSize="17sp" />
+                <TextView
+                    android:id="@+id/Total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/textView24"
+                    android:layout_alignBottom="@+id/textView24"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:text="120.00元"
+                     />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1sp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF">
+                <TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15sp"
+                    android:layout_marginLeft="15sp"
+                    android:layout_marginTop="15sp"
+                    android:text="洗澡"
+                    android:textSize="17sp" />
+                <ImageView
+                    android:id="@+id/Take_a_showerReduce"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/textView25"
+                    android:layout_marginLeft="105dp"
+                    android:layout_marginStart="105dp"
+                    android:layout_toEndOf="@+id/textView25"
+                    android:layout_toRightOf="@+id/textView25"
+                    android:src="@mipmap/reduce" />
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="30sp"
+                    android:layout_height="1sp"
+                    android:layout_alignTop="@+id/Take_a_showerReduce"
+                    android:layout_toEndOf="@+id/Take_a_showerReduce"
+                    android:layout_toRightOf="@+id/Take_a_showerReduce"
+                    android:background="#F0F1F5" />
+                <TextView
+                    android:id="@+id/Bathing_times"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/Take_a_showerPlus"
+                    android:layout_centerHorizontal="true"
+                    android:text="1" />
+                <View
+                    android:layout_width="30sp"
+                    android:layout_height="1sp"
+                    android:layout_alignBottom="@+id/Take_a_showerReduce"
+                    android:layout_toEndOf="@+id/Take_a_showerReduce"
+                    android:layout_toRightOf="@+id/Take_a_showerReduce"
+                    android:background="#F0F1F5" />
+                <ImageView
+                    android:id="@+id/Take_a_showerPlus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/view2"
+                    android:layout_toEndOf="@+id/view2"
+                    android:layout_toRightOf="@+id/view2"
+                    android:src="@mipmap/plus" />
+                <TextView
+                    android:id="@+id/Take_a_shower_Price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"
+                    android:text="60.00元" />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1sp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF">
+                <TextView
+                    android:id="@+id/textView35"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15sp"
+                    android:layout_marginLeft="15sp"
+                    android:layout_marginTop="15sp"
+                    android:text="接送"
+                    android:textSize="17sp" />
+                <ImageView
+                    android:id="@+id/Shuttle_reduce"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/textView35"
+                    android:layout_marginLeft="105dp"
+                    android:layout_marginStart="105dp"
+                    android:layout_toEndOf="@+id/textView35"
+                    android:layout_toRightOf="@+id/textView35"
+                    android:src="@mipmap/reduce" />
+                <View
+                    android:id="@+id/view20"
+                    android:layout_width="30sp"
+                    android:layout_height="1sp"
+                    android:layout_alignTop="@+id/Shuttle_reduce"
+                    android:layout_toEndOf="@+id/Shuttle_reduce"
+                    android:layout_toRightOf="@+id/Shuttle_reduce"
+                    android:background="#F0F1F5" />
+                <TextView
+                    android:id="@+id/Delivery_times"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/Shuttle_plus"
+                    android:layout_centerHorizontal="true"
+                    android:text="1" />
+                <View
+                    android:layout_width="30sp"
+                    android:layout_height="1sp"
+                    android:layout_alignBottom="@+id/Shuttle_reduce"
+                    android:layout_toEndOf="@+id/Shuttle_reduce"
+                    android:layout_toRightOf="@+id/Shuttle_reduce"
+                    android:background="#F0F1F5" />
+                <ImageView
+                    android:id="@+id/Shuttle_plus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/view20"
+                    android:layout_toEndOf="@+id/view20"
+                    android:layout_toRightOf="@+id/view20"
+                    android:src="@mipmap/plus" />
+                <TextView
+                    android:id="@+id/Shuttle_Price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"
+                    android:text="50.00元" />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1sp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF">
+                <TextView
+                    android:id="@+id/textView26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15sp"
+                    android:layout_marginLeft="15sp"
+                    android:layout_marginTop="15sp"
+                    android:text="合计金额" />
+                <TextView
+                    android:id="@+id/Total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/textView26"
+                    android:layout_alignBottom="@+id/textView26"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:text="230.00元" />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5sp" />
+            <RelativeLayout
+                android:id="@+id/Adding_foster_pets"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF">
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="15sp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="15sp"
+                    android:src="@mipmap/app_pet_normal" />
+                <TextView
+                    android:id="@+id/textView27"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/imageView10"
+                    android:layout_marginLeft="11dp"
+                    android:layout_marginStart="11dp"
+                    android:layout_toEndOf="@+id/imageView10"
+                    android:layout_toRightOf="@+id/imageView10"
+                    android:text="添加寄养宠物"
+                    android:textSize="17sp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/textView27"
+                    android:layout_marginEnd="17dp"
+                    android:layout_marginRight="17dp"
+                    android:src="@mipmap/enter" />
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:layout_marginLeft="15sp"
+                android:layout_marginTop="10sp"
+                android:text="寄养留言"
+                android:textSize="17sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF">
+                <EditText
+                    android:id="@+id/Leaving_a_message."
+                    android:layout_width="match_parent"
+                    android:layout_height="35sp"
+                    android:layout_marginLeft="15sp"
+                    android:layout_marginRight="15sp"
+                    android:background="@drawable/edit_bg"
+                    android:hint="和他/她说点什么吧"
+                    android:layout_marginTop="10sp"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1sp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/button"
+                    android:layout_alignBottom="@+id/button"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
+                    android:text="总金额:" />
+                <TextView
+                    android:id="@+id/textView29"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginStart="17dp"
+                    android:layout_toEndOf="@+id/textView28"
+                    android:layout_toRightOf="@+id/textView28"
+                    android:text="¥"
+                    android:textSize="17sp" />
+                <TextView
+                    android:id="@+id/Total_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="11dp"
+                    android:layout_marginStart="11dp"
+                    android:layout_toEndOf="@+id/textView29"
+                    android:layout_toRightOf="@+id/textView29"
+                    android:text="230.00"
+                    android:textSize="17sp" />
+                <Button
+                    android:layout_width="120sp"
+                    android:layout_height="40sp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="14dp"
+                    android:layout_marginRight="14dp"
+                    android:text="预约寄养"
+                    android:background="@drawable/button"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginBottom="10sp"
+                    android:id="@+id/button" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

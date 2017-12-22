@@ -226,7 +226,6 @@ public class FosterteacherActivity extends BaseActivity<FosterteacherPresenter> 
                 pop.setBackgroundDrawable(new ColorDrawable(0xffffff));//支持点击Back虚拟键退出
                 pop.showAtLocation(findViewById(R.id.positive_photo), Gravity.NO_GRAVITY, 0, 0);
                 startAlphAnimotion();
-
                 pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
                     @Override
                     public void onDismiss() {
@@ -310,7 +309,6 @@ public class FosterteacherActivity extends BaseActivity<FosterteacherPresenter> 
                 pop.setBackgroundDrawable(new ColorDrawable(0xffffff));//支持点击Back虚拟键退出
                 pop.showAtLocation(findViewById(R.id.positive_photo), Gravity.NO_GRAVITY, 0, 0);
                 startAlphAnimotion();
-
                 pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
                     @Override
                     public void onDismiss() {
@@ -468,7 +466,6 @@ public class FosterteacherActivity extends BaseActivity<FosterteacherPresenter> 
                     if (originalUri != null) {
                         //拿到图片
                         bitmap = BitmapFactory.decodeFile(originalUri.getPath());
-                        tempImage.setImageResource(R.mipmap.ic_launcher);
                     }
                     if (bitmap == null) {
                         Bundle bundle = data.getExtras();

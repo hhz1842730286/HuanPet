@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -18,11 +17,11 @@ import android.widget.TextView;
 
 import com.jiyun.huanpet.R;
 import com.jiyun.huanpet.presenter.contract.DetailsOfAFosterTeacherContract;
-import com.jiyun.huanpet.presenter.presenter.DetailsOfAFosterTeacherPresenter;
+import com.jiyun.huanpet.presenter.presenter.DetailsOfAFosterTeacherPresenteriml;
 import com.jiyun.huanpet.ui.base.BaseActivity;
 import com.youth.banner.Banner;
 
-public class DetailsOfAFosterTeacherActivity extends BaseActivity<DetailsOfAFosterTeacherPresenter> implements View.OnClickListener,
+public class DetailsOfAFosterTeacherActivity extends BaseActivity<DetailsOfAFosterTeacherPresenteriml> implements View.OnClickListener,
         DetailsOfAFosterTeacherContract.DetailsOfAFosterTeacherView{
 
     private ImageView ign_out;
@@ -92,6 +91,7 @@ public class DetailsOfAFosterTeacherActivity extends BaseActivity<DetailsOfAFost
         number = (TextView) findViewById(R.id.number);
         textView19 = (TextView) findViewById(R.id.textView19);
         enter_a_review = (ImageView) findViewById(R.id.enter_a_review);
+        enter_a_review.setOnClickListener(this);
         imageView = (ImageView) findViewById(R.id.imageView);
         daPrice = (TextView) findViewById(R.id.daPrice);
         zhongimageView = (ImageView) findViewById(R.id.zhongimageView);
@@ -157,6 +157,8 @@ public class DetailsOfAFosterTeacherActivity extends BaseActivity<DetailsOfAFost
             case R.id.imageView6:
                 break;
             case R.id.imageView7:
+                break;
+            case R.id.enter_a_review:
                 break;
             case R.id.Contact_him:
                 pop = new PopupWindow(inflate,
