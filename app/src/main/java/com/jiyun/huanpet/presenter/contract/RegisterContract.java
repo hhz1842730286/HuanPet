@@ -1,5 +1,6 @@
 package com.jiyun.huanpet.presenter.contract;
 
+import com.hyphenate.exceptions.HyphenateException;
 import com.jiyun.huanpet.presenter.baseapi.BasePresenter;
 import com.jiyun.huanpet.ui.activity.home.bean.RegisterBean;
 import com.jiyun.huanpet.ui.base.BaseView;

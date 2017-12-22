@@ -11,6 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.exceptions.HyphenateException;
 import com.jiyun.huanpet.R;
 import com.jiyun.huanpet.httputils.FileUtil;
 import com.jiyun.huanpet.presenter.contract.LoginContract;
@@ -122,10 +125,33 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements L
             String userId = registerBean.getResult().getUserId();
             int userSex = registerBean.getResult().getUserSex();
             long userPhone = registerBean.getResult().getUserPhone();
+            String password = registerBean.getResult().getPassword();
+            //环信登录
+            EMClient.getInstance().login(userName,password,new EMCallBack() {//回调
+                @Override
+                public void onSuccess() {
+                    EMClient.getInstance().groupManager().loadAllGroups();
+                    EMClient.getInstance().chatManager().loadAllConversations();
+                    Log.e("main", "登录聊天服务器成功！");
+
+                }
+
+                @Override
+                public void onProgress(int progress, String status) {
+
+                }
+
+                @Override
+                public void onError(int code, String message) {
+                    Log.e("main", "登录聊天服务器失败！");
+                }
+            });
+
             editor.putLong("userPhone",userPhone);
             editor.putString("userName",userName);
             editor.putString("userId",userId);
             editor.putInt("userSex",userSex);
+            editor.putString("password",password);
             editor.commit();
             finish();
         } else {

@@ -1,8 +1,17 @@
 package com.jiyun.huanpet.ui.activity.home.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMMessage;
+import com.hyphenate.easeui.EaseConstant;
 import com.jiyun.huanpet.R;
 import com.jiyun.huanpet.presenter.homedetails.DetailsPresenter;
 import com.jiyun.huanpet.ui.activity.home.bean.HomeDetailsBean;
@@ -15,11 +24,14 @@ import java.util.List;
  * Created by lh on 2017/12/21.
  */
 
-public class HomeDetailsActivity extends BaseActivity<DetailsPresenter> implements DetailsView{
+public class HomeDetailsActivity extends BaseActivity<DetailsPresenter> implements DetailsView,View.OnClickListener{
 
     private String usersId;
     private DetailsPresenter detailsPresenter;
      private TextView number,name,daPrice,zhongPrice,catPrice,daTake_a_showerPrice,zhong_Take_a_showerPrice,Shuttle_cat_Price,Study,addresss,briefIntroduction;
+     private LinearLayout Contact_him;
+     private Context mCon;
+
 
 
     @Override
@@ -29,6 +41,7 @@ public class HomeDetailsActivity extends BaseActivity<DetailsPresenter> implemen
 
     @Override
     protected void findViewById() {
+        mCon = HomeDetailsActivity.this;
         detailsPresenter = new DetailsPresenter(this);
         Intent intent = getIntent();
         usersId = intent.getStringExtra("usersId");
@@ -43,6 +56,8 @@ public class HomeDetailsActivity extends BaseActivity<DetailsPresenter> implemen
         Study = (TextView) findViewById(R.id.Study);
         addresss = (TextView) findViewById(R.id.address);
         briefIntroduction = (TextView) findViewById(R.id.briefIntroduction);
+        Contact_him = (LinearLayout) findViewById(R.id.Contact_him);
+        Contact_him.setOnClickListener(this);
     }
 
     @Override
@@ -98,5 +113,20 @@ public class HomeDetailsActivity extends BaseActivity<DetailsPresenter> implemen
 
         String userName = desc.getFosterInfo().getUserName();
         name.setText(userName);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.Contact_him:
+                Intent in = new Intent(mCon,chatActivity.class);
+                in.putExtra(EaseConstant.EXTRA_CHAT_TYPE, EMMessage.ChatType.Chat);
+                in.putExtra(EaseConstant.EXTRA_USER_ID,usersId);
+                startActivity(in);
+
+
+
+                break;
+        }
     }
 }

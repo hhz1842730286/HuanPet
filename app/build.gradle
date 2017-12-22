@@ -48,4 +48,5 @@ dependencies {
     implementation files('libs/umeng_social_api.jar')
     implementation files('libs/umeng_social_net.jar')
     implementation files('libs/umeng_social_tool.jar')
+    implementation project(':easeui')
 }

@@ -25,6 +25,7 @@
                     android:src="@mipmap/cp_ic_back"
                     android:padding="10dp"
                     android:id="@+id/ign_out"
+                    android:background="#f4f0f0"
                     android:layout_marginLeft="15sp"/>
 
                 <com.youth.banner.Banner

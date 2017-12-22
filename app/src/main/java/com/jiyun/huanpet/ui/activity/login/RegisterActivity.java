@@ -2,6 +2,8 @@ package com.jiyun.huanpet.ui.activity.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.exceptions.HyphenateException;
 import com.jiyun.huanpet.R;
 import com.jiyun.huanpet.config.Urls;
 import com.jiyun.huanpet.httputils.CJSON;
@@ -192,11 +196,42 @@ public class RegisterActivity extends BaseActivity<RegisterPresenterImpl> implem
                     break;
         }
     }
-
+    private Handler regisHan = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if(msg.what == 1){
+                Toast.makeText(RegisterActivity.this, "可以聊天了", Toast.LENGTH_SHORT).show();
+            }else if(msg.what == 2){
+                Toast.makeText(RegisterActivity.this, "还不可以聊天", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
 
     @Override
-    public void register(RegisterBean registerBean) {
+    public void register(RegisterBean registerBean){
         if(registerBean.isRet()==true){
+            final String userName = registerBean.getResult().getUserName();
+            final String password = registerBean.getResult().getPassword();
+            //环信注册
+
+             new Thread(new Runnable() {
+                 @Override
+                 public void run() {
+                     try {
+
+                         EMClient.getInstance().createAccount(userName, password);//同步方法
+                         Message message = new Message();
+                         message.what = 1;
+                         regisHan.sendMessage(message);
+                     } catch (HyphenateException e) {
+                         e.printStackTrace();
+                         Message message = new Message();
+                         message.what = 2;
+                         regisHan.sendMessage(message);
+                     }
+                 }
+             }).start();
             Toast.makeText(this, "注册成功,请登录", Toast.LENGTH_SHORT).show();
             finish();
         }else{
