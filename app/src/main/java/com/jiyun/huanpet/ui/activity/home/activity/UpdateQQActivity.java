@@ -12,12 +12,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jiyun.huanpet.R;
+import com.jiyun.huanpet.presenter.updata.UpdataQQ;
+import com.jiyun.huanpet.presenter.updata.UpdataQQPresenter;
+import com.jiyun.huanpet.ui.activity.home.bean.ForgetPassWordBean;
+import com.jiyun.huanpet.view.UpdataWeiXinView;
 
 /**
  * Created by lh on 2017/12/19.
  */
 
-public class UpdateQQActivity extends AppCompatActivity implements View.OnClickListener{
+public class UpdateQQActivity extends AppCompatActivity implements View.OnClickListener,UpdataWeiXinView{
     private ImageView person_name_back;
     private TextView person_title_text;
     private TextView Submit;
@@ -25,6 +29,8 @@ public class UpdateQQActivity extends AppCompatActivity implements View.OnClickL
     private Context mCon;
     private SharedPreferences preferences;
     private SharedPreferences.Editor edit;
+    private UpdataQQPresenter updataQQPresenter;
+    private String userId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,10 +39,12 @@ public class UpdateQQActivity extends AppCompatActivity implements View.OnClickL
         mCon = UpdateQQActivity.this;
         preferences = mCon.getSharedPreferences("Login",MODE_PRIVATE);
         edit = preferences.edit();
+        userId = preferences.getString("userId", "");
         initView();
     }
 
     private void initView() {
+        updataQQPresenter = new UpdataQQPresenter(this);
         person_name_back = (ImageView) findViewById(R.id.Go_back);
         person_name_back.setOnClickListener(this);
         person_title_text = (TextView) findViewById(R.id.person_title_text);
@@ -56,12 +64,23 @@ public class UpdateQQActivity extends AppCompatActivity implements View.OnClickL
                 break;
 
             case R.id.Submit:
-                finish();
+
                 String string = person_name_edi.getText().toString().trim();
-                edit.putString("QQ",string);
-                edit.commit();
-                Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
+                updataQQPresenter.updataQQ(userId,string);
+//                edit.putString("QQ",string);
+//                edit.commit();
+
                 break;
+        }
+    }
+
+    @Override
+    public void updata(ForgetPassWordBean bean) {
+        if(bean.isRet() == true){
+            Toast.makeText(mCon, "修改QQ成功", Toast.LENGTH_SHORT).show();
+            finish();
+        }else{
+            Toast.makeText(mCon, "修改QQ失败", Toast.LENGTH_SHORT).show();
         }
     }
 }

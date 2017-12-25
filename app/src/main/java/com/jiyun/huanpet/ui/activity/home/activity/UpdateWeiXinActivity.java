@@ -12,12 +12,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jiyun.huanpet.R;
+import com.jiyun.huanpet.presenter.updata.UpdataWeinPresenter;
+import com.jiyun.huanpet.ui.activity.home.bean.ForgetPassWordBean;
+import com.jiyun.huanpet.view.UpdataWeiXinView;
 
 /**
  * Created by lh on 2017/12/19.
  */
 
-public class UpdateWeiXinActivity extends AppCompatActivity implements View.OnClickListener{
+public class UpdateWeiXinActivity extends AppCompatActivity implements View.OnClickListener,UpdataWeiXinView{
 
     private ImageView person_name_back;
     private TextView Submit;
@@ -26,6 +29,8 @@ public class UpdateWeiXinActivity extends AppCompatActivity implements View.OnCl
     private Context mCon;
     private SharedPreferences.Editor edit;
     private SharedPreferences preferences;
+    private UpdataWeinPresenter updataWeinPresenter;
+    private String userId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,10 +39,12 @@ public class UpdateWeiXinActivity extends AppCompatActivity implements View.OnCl
         mCon = UpdateWeiXinActivity.this;
         preferences = mCon.getSharedPreferences("Login",MODE_PRIVATE);
         edit = preferences.edit();
+        userId = preferences.getString("userId", "");
         initView();
     }
 
     private void initView() {
+        updataWeinPresenter = new UpdataWeinPresenter(this);
         person_title_text = (TextView) findViewById(R.id.person_title_text);
         person_title_text.setText("微信");
         person_name_back = (ImageView) findViewById(R.id.Go_back);
@@ -59,10 +66,18 @@ public class UpdateWeiXinActivity extends AppCompatActivity implements View.OnCl
             case R.id.Submit:
                 finish();
                 String string = person_name_edi.getText().toString().trim();
-                edit.putString("WeiXin",string);
-                edit.commit();
-                Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
+                updataWeinPresenter.updataweiin(userId,string);
+
                 break;
+        }
+    }
+
+    @Override
+    public void updata(ForgetPassWordBean bean) {
+        if(bean.isRet() == true){
+            Toast.makeText(mCon, "修改微信成功", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(mCon, "修改微信失败", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -1,14 +1,18 @@
 package com.jiyun.huanpet.ui.activity.home.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jiyun.huanpet.R;
 import com.jiyun.huanpet.presenter.contract.HomeContract;
 import com.jiyun.huanpet.presenter.presenter.HomePresenterImpl;
+import com.jiyun.huanpet.ui.activity.home.bean.ForgetPassWordBean;
 import com.jiyun.huanpet.ui.activity.home.bean.FuJinBean;
 import com.jiyun.huanpet.ui.activity.home.bean.PetTypeBean;
 import com.jiyun.huanpet.ui.base.BaseActivity;
@@ -19,6 +23,11 @@ public class UpdateUserNameActivity extends BaseActivity<HomePresenterImpl> impl
     private EditText Name;
     private ImageView Go_back;
     private TextView Submit;
+    private Context mCon;
+    private SharedPreferences preferences;
+    private HomePresenterImpl homePresenter;
+    private SharedPreferences.Editor edit;
+    private String name;
 
     @Override
     protected int getLayoutId() {
@@ -27,6 +36,10 @@ public class UpdateUserNameActivity extends BaseActivity<HomePresenterImpl> impl
 
     @Override
     protected void findViewById() {
+        mCon = UpdateUserNameActivity.this;
+        homePresenter = new HomePresenterImpl(this);
+        preferences = mCon.getSharedPreferences("Login",MODE_PRIVATE);
+        edit = preferences.edit();
         Name = (EditText) findViewById(R.id.Name);
         Go_back = (ImageView) findViewById(R.id.Go_back);
         Go_back.setOnClickListener(this);
@@ -49,12 +62,10 @@ public class UpdateUserNameActivity extends BaseActivity<HomePresenterImpl> impl
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.Submit:
-                String name = Name.getText().toString().trim();
-                String date=Name.getText().toString().trim();
-                Intent intent = new Intent();
-                intent.putExtra("name", name);
-                intent.putExtra("date",date);
-                setResult(2000, intent);
+                String userId = preferences.getString("userId","");
+                name = Name.getText().toString().trim();
+                homePresenter.updatename(userId, name);
+
                 finish();
                 break;
             case R.id.Go_back:
@@ -89,5 +100,17 @@ public class UpdateUserNameActivity extends BaseActivity<HomePresenterImpl> impl
     @Override
     public void petType(List<PetTypeBean.DescBean> descBeans) {
 
+    }
+
+    @Override
+    public void updataname(ForgetPassWordBean bean) {
+        if(bean.isRet() == true){
+            edit.putString("userName",name);
+            edit.commit();
+            Toast.makeText(mCon, "修改名字成功", Toast.LENGTH_SHORT).show();
+            finish();
+        }else{
+            Toast.makeText(mCon, "修改名字失败", Toast.LENGTH_SHORT).show();
+        }
     }
 }

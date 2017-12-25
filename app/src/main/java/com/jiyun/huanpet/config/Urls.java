@@ -36,4 +36,8 @@ public class Urls {
     public static final String INDENT=BASE_URL+"orderInfo/getOrderInfoByUserId.jhtml";
     //订单详情
     public static final String PARTICULARS=BASE_URL+"petInfo/getPetInfoByPetId.jhtml";
+    //评论
+    public static final String COMMENT = BASE_URL+"usersEvaluatedInfo/getUsersEvaluatedInfoByVO.jhtml";
+    //各人信息修改
+    public static final String UPDATE = BASE_URL+"user/updateUserInfo.jhtml";
 }

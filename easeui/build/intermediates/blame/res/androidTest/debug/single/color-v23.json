@@ -1,11 +1,35 @@
 [
     {
+        "merged": "D:\\AndroidStudioProject\\HuanPet\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v23\\abc_tint_btn_checkable.xml",
+        "source": "C:\\Users\\李壑\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.0-alpha1.aar\\bf5df1deaa1c71df077d8f85be6d2ff4\\res\\color-v23\\abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProject\\HuanPet\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v23\\abc_tint_edittext.xml",
+        "source": "C:\\Users\\李壑\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.0-alpha1.aar\\bf5df1deaa1c71df077d8f85be6d2ff4\\res\\color-v23\\abc_tint_edittext.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProject\\HuanPet\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v23\\abc_tint_spinner.xml",
+        "source": "C:\\Users\\李壑\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.0-alpha1.aar\\bf5df1deaa1c71df077d8f85be6d2ff4\\res\\color-v23\\abc_tint_spinner.xml"
+    },
+    {
         "merged": "E:\\HuanPetGZF\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v23\\abc_tint_spinner.xml",
         "source": "C:\\Users\\好阵风\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.0-alpha1.aar\\9c3d53c57550d1f087ea7f598a7ef17a\\res\\color-v23\\abc_tint_spinner.xml"
     },
     {
         "merged": "E:\\HuanPetGZF\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v23\\abc_tint_switch_track.xml",
         "source": "C:\\Users\\好阵风\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.0-alpha1.aar\\9c3d53c57550d1f087ea7f598a7ef17a\\res\\color-v23\\abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProject\\HuanPet\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v23\\abc_btn_colored_text_material.xml",
+        "source": "C:\\Users\\李壑\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.0-alpha1.aar\\bf5df1deaa1c71df077d8f85be6d2ff4\\res\\color-v23\\abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProject\\HuanPet\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v23\\abc_tint_seek_thumb.xml",
+        "source": "C:\\Users\\李壑\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.0-alpha1.aar\\bf5df1deaa1c71df077d8f85be6d2ff4\\res\\color-v23\\abc_tint_seek_thumb.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProject\\HuanPet\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v23\\abc_tint_default.xml",
+        "source": "C:\\Users\\李壑\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.0-alpha1.aar\\bf5df1deaa1c71df077d8f85be6d2ff4\\res\\color-v23\\abc_tint_default.xml"
     },
     {
         "merged": "E:\\HuanPetGZF\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v23\\abc_tint_switch_thumb.xml",
@@ -38,5 +62,21 @@
     {
         "merged": "E:\\HuanPetGZF\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v23\\abc_tint_default.xml",
         "source": "C:\\Users\\好阵风\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.0-alpha1.aar\\9c3d53c57550d1f087ea7f598a7ef17a\\res\\color-v23\\abc_tint_default.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProject\\HuanPet\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v23\\abc_color_highlight_material.xml",
+        "source": "C:\\Users\\李壑\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.0-alpha1.aar\\bf5df1deaa1c71df077d8f85be6d2ff4\\res\\color-v23\\abc_color_highlight_material.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProject\\HuanPet\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v23\\abc_tint_switch_thumb.xml",
+        "source": "C:\\Users\\李壑\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.0-alpha1.aar\\bf5df1deaa1c71df077d8f85be6d2ff4\\res\\color-v23\\abc_tint_switch_thumb.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProject\\HuanPet\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v23\\abc_tint_switch_track.xml",
+        "source": "C:\\Users\\李壑\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.0-alpha1.aar\\bf5df1deaa1c71df077d8f85be6d2ff4\\res\\color-v23\\abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProject\\HuanPet\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v23\\abc_btn_colored_borderless_text_material.xml",
+        "source": "C:\\Users\\李壑\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.0-alpha1.aar\\bf5df1deaa1c71df077d8f85be6d2ff4\\res\\color-v23\\abc_btn_colored_borderless_text_material.xml"
     }
 ]

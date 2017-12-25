@@ -30,7 +30,7 @@
         android:roundIcon="@mipmap/pet_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.start.activity.StartActivity">
+        <activity android:name=".ui.activity.home.activity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -69,6 +69,10 @@
         <activity android:name=".ui.activity.home.activity.setactivity.ProductSuggestion"></activity>
         <activity android:name=".ui.activity.userparticularsactivity.ConfirmedActivity"></activity>
         <activity android:name=".ui.activity.home.activity.HomeDetailsActivity"></activity>
+        <activity android:name=".ui.activity.home.activity.FosterCommentActivity"></activity>
+        <activity
+            android:name=".ui.activity.home.activity.DetailsOfAFosterTeacherActivity"></activity>
+
         <activity
             android:name="com.zaaach.citypicker.CityPickerActivity"
             android:theme="@style/CityPicker.NoActionBar"

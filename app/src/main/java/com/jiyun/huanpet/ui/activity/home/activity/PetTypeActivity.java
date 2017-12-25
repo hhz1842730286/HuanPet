@@ -3,6 +3,7 @@ package com.jiyun.huanpet.ui.activity.home.activity;
 import com.jiyun.huanpet.R;
 import com.jiyun.huanpet.presenter.contract.HomeContract;
 import com.jiyun.huanpet.presenter.presenter.HomePresenterImpl;
+import com.jiyun.huanpet.ui.activity.home.bean.ForgetPassWordBean;
 import com.jiyun.huanpet.ui.activity.home.bean.FuJinBean;
 import com.jiyun.huanpet.ui.activity.home.bean.PetTypeBean;
 import com.jiyun.huanpet.ui.base.BaseActivity;
@@ -55,6 +56,11 @@ public class PetTypeActivity extends BaseActivity<HomePresenterImpl>implements H
 
     @Override
     public void petType(List<PetTypeBean.DescBean> descBeans) {
+
+    }
+
+    @Override
+    public void updataname(ForgetPassWordBean bean) {
 
     }
 }

@@ -31,6 +31,7 @@ import com.jiyun.huanpet.presenter.presenter.HomePresenterImpl;
 import com.jiyun.huanpet.ui.activity.home.adapter.HomeAdapter;
 import com.jiyun.huanpet.ui.activity.home.adapter.HomePetAdapter;
 import com.jiyun.huanpet.ui.activity.home.adapter.NearbyAdapter;
+import com.jiyun.huanpet.ui.activity.home.bean.ForgetPassWordBean;
 import com.jiyun.huanpet.ui.activity.home.bean.FuJinBean;
 import com.jiyun.huanpet.ui.activity.home.bean.Person;
 import com.jiyun.huanpet.ui.activity.home.bean.PetTypeBean;
@@ -537,6 +538,11 @@ public class HomeActivity extends BaseActivity<HomePresenterImpl> implements Hom
         beans.clear();
         petList.addAll(descBeans);
         petAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void updataname(ForgetPassWordBean bean) {
+
     }
 }
 

@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.jiyun.huanpet.R;
 import com.jiyun.huanpet.presenter.contract.PersonalInfomationContract;
 import com.jiyun.huanpet.presenter.presenter.PersonalInfomationPresenterImpl;
+import com.jiyun.huanpet.ui.activity.home.bean.ForgetPassWordBean;
 import com.jiyun.huanpet.ui.base.BaseActivity;
 
 import java.io.File;
@@ -77,6 +78,10 @@ public class PersonalInfomationActivity extends BaseActivity<PersonalInfomationP
     private int[] year1;
     private int[] month1;
     private int[] day1;
+    private String sexWoment;
+    private PersonalInfomationPresenterImpl personalInfomationPresenter;
+    private String sexMan;
+    private String userId;
 
     @Override
     protected int getLayoutId() {
@@ -86,8 +91,10 @@ public class PersonalInfomationActivity extends BaseActivity<PersonalInfomationP
     @Override
     protected void findViewById() {
         mCon = PersonalInfomationActivity.this;
+        personalInfomationPresenter = new PersonalInfomationPresenterImpl(this);
         preferences = mCon.getSharedPreferences("Login",MODE_PRIVATE);
         edit = preferences.edit();
+        userId = preferences.getString("userId", "");
         person_titleimage = (ImageView) findViewById(R.id.person_titleimage);
         person_lineartitle = (LinearLayout) findViewById(R.id.person_lineartitle);
         personal_return = (ImageView) findViewById(R.id.personal_return);
@@ -216,12 +223,13 @@ public class PersonalInfomationActivity extends BaseActivity<PersonalInfomationP
                     System.out.println(d);
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                     String dateNowStr = sdf.format(d);
-
-                    Toast.makeText(mCon, dateNowStr, Toast.LENGTH_SHORT).show();
+                    personalInfomationPresenter.updataBirth(userId,dateNowStr);
+//                    edit.putString("birth",dateNowStr);
+//                    edit.commit();
                 }else {
-                    edit.putString("birth",lend_time.toString());
-                    edit.commit();
-                    Toast.makeText(mCon, lend_time, Toast.LENGTH_SHORT).show();
+                    personalInfomationPresenter.updataBirth(userId,lend_time.toString());
+
+
                 }
 
                 break;
@@ -230,18 +238,16 @@ public class PersonalInfomationActivity extends BaseActivity<PersonalInfomationP
                 break;
             case R.id.man:
                 sexPopuwin.dismiss();
-                String sexMan = man.getText().toString();
-                edit.putString("userSex",sexMan);
-                edit.commit();
-                Toast.makeText(mCon, sexMan, Toast.LENGTH_SHORT).show();
+                String userIdMan = preferences.getString("userId", "");
+                sexMan = man.getText().toString();
+                 personalInfomationPresenter.updataSexMan(userIdMan,"1");
                 break;
 
             case R.id.women:
                 sexPopuwin.dismiss();
-                String sexWoment = women.getText().toString();
-                edit.putString("userSex",sexWoment);
-                edit.commit();
-                Toast.makeText(mCon, sexWoment, Toast.LENGTH_SHORT).show();
+                String userId = preferences.getString("userId", "");
+                sexWoment = women.getText().toString();
+                 personalInfomationPresenter.updataSex(userId,"2");
                 break;
             case R.id.Photograph:
                 chooseFromCamera();
@@ -261,7 +267,7 @@ public class PersonalInfomationActivity extends BaseActivity<PersonalInfomationP
                 titlepopuwin.showAtLocation(person_lineartitle, Gravity.BOTTOM, 0, 0);
                 break;
             case R.id.mPersonalUserName:
-                startActivityForResult(new Intent(this, UpdateUserNameActivity.class), REQUESTCODE);
+                startActivity(new Intent(this, UpdateUserNameActivity.class));
                 break;
             case R.id.mPersonalSex:
                 backgroundAlpha();
@@ -462,4 +468,40 @@ public class PersonalInfomationActivity extends BaseActivity<PersonalInfomationP
         lp.alpha = 1.0f; //0.0-1.0
         getWindow().setAttributes(lp);
     }
+
+    @Override
+    public void updatasex(ForgetPassWordBean bean) {
+        if(bean.isRet() == true){
+            edit.putString("userSex", sexWoment);
+            edit.commit();
+            Toast.makeText(mCon, "修改性别成功", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(mCon, "修改性别失败", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void updataSexMan(ForgetPassWordBean bean) {
+        if(bean.isRet() == true){
+            edit.putString("userSex",sexMan);
+            edit.commit();
+            Toast.makeText(mCon, "修改性别成功", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(mCon, "修改性别失败", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void updataBirth(ForgetPassWordBean bean) {
+        if(bean.isRet() == true){
+            edit.putString("birth",lend_time.toString());
+            edit.commit();
+            Toast.makeText(mCon, "修改日期成功", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(mCon, "修改日期失败", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+
 }

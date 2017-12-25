@@ -5,6 +5,7 @@ import com.jiyun.huanpet.model.api.HttpCallback;
 import com.jiyun.huanpet.model.biz.login.HomeLogin;
 import com.jiyun.huanpet.model.biz.login.IHomeLogin;
 import com.jiyun.huanpet.presenter.contract.HomeContract;
+import com.jiyun.huanpet.ui.activity.home.bean.ForgetPassWordBean;
 import com.jiyun.huanpet.ui.activity.home.bean.FuJinBean;
 import com.jiyun.huanpet.ui.activity.home.bean.PetTypeBean;
 
@@ -71,17 +72,22 @@ public class HomePresenterImpl implements HomeContract.HomePresenter {
     }
 
     @Override
-    public void TypeCode(String beginIndex, String endIndex, String typeCode) {
-        iHomeLogin.TypeCode(beginIndex, endIndex, typeCode, new HttpCallback() {
-            @Override
-            public void success(Object o) {
-                String string = o.toString();
-            }
+    public void updatename(String userId, String userName) {
+         iHomeLogin.TypeCode(userId, userName, new HttpCallback() {
+             @Override
+             public void success(Object o) {
+                 String string = o.toString();
+                 Gson gson = new Gson();
+                 ForgetPassWordBean forgetPassWordBean = gson.fromJson(string, ForgetPassWordBean.class);
+                 homeView.updataname(forgetPassWordBean);
+             }
 
-            @Override
-            public void error(String error) {
+             @Override
+             public void error(String error) {
 
-            }
-        });
+             }
+         });
     }
+
+
 }

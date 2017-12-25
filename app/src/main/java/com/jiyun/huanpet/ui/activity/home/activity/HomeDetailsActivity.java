@@ -127,6 +127,11 @@ public class HomeDetailsActivity extends BaseActivity<DetailsPresenter> implemen
                 startActivity(in);
                 break;
               case R.id.textView16:
+                  String names = name.getText().toString();
+                  Intent intent = new Intent(mCon,FosterCommentActivity.class);
+                  intent.putExtra("name",names);
+                  intent.putExtra("id",usersId);
+                  startActivity(intent);
 
                   break;
 
